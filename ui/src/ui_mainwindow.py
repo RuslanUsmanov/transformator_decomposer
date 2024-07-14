@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# isort: skip_file
+
 ###############################################################################
 # Form generated from reading UI file 'ui_mainwindow.ui'
 #
@@ -8,6 +8,11 @@
 # WARNING! All changes made in this file will be lost when recompiling UI file!
 ###############################################################################
 
+from matplotlib.backends.backend_qtagg import (
+    FigureCanvasQTAgg,
+    NavigationToolbar2QT,
+)
+from matplotlib.figure import Figure
 from PySide6.QtCore import QCoreApplication, QMetaObject, QRect, QSize, Qt
 from PySide6.QtGui import QAction, QFont
 from PySide6.QtWidgets import (
@@ -26,11 +31,6 @@ from PySide6.QtWidgets import (
     QVBoxLayout,
     QWidget,
 )
-from matplotlib.backends.backend_qtagg import (
-    FigureCanvasQTAgg as FigureCanvas,
-    NavigationToolbar2QT as NavigationToolbar,
-)
-from matplotlib.figure import Figure
 
 
 class Ui_MainWindow(object):
@@ -138,6 +138,18 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_2.addWidget(self.from_points_lineedit)
 
+        self.label_4 = QLabel(self.diapason_select_group)
+        self.label_4.setObjectName("label_4")
+
+        self.horizontalLayout_2.addWidget(self.label_4)
+
+        self.to_points_lineedit = QLineEdit(self.diapason_select_group)
+        self.to_points_lineedit.setObjectName("to_points_lineedit")
+        self.to_points_lineedit.setEnabled(False)
+        self.to_points_lineedit.setMaximumSize(QSize(150, 16777215))
+
+        self.horizontalLayout_2.addWidget(self.to_points_lineedit)
+
         self.horizontalSpacer_12 = QSpacerItem(
             40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum
         )
@@ -145,28 +157,6 @@ class Ui_MainWindow(object):
         self.horizontalLayout_2.addItem(self.horizontalSpacer_12)
 
         self.verticalLayout_2.addLayout(self.horizontalLayout_2)
-
-        self.horizontalLayout_3 = QHBoxLayout()
-        self.horizontalLayout_3.setObjectName("horizontalLayout_3")
-        self.label_4 = QLabel(self.diapason_select_group)
-        self.label_4.setObjectName("label_4")
-
-        self.horizontalLayout_3.addWidget(self.label_4)
-
-        self.to_points_lineedit = QLineEdit(self.diapason_select_group)
-        self.to_points_lineedit.setObjectName("to_points_lineedit")
-        self.to_points_lineedit.setEnabled(False)
-        self.to_points_lineedit.setMaximumSize(QSize(150, 16777215))
-
-        self.horizontalLayout_3.addWidget(self.to_points_lineedit)
-
-        self.horizontalSpacer_13 = QSpacerItem(
-            40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum
-        )
-
-        self.horizontalLayout_3.addItem(self.horizontalSpacer_13)
-
-        self.verticalLayout_2.addLayout(self.horizontalLayout_3)
 
         self.horizontalLayout_4.addLayout(self.verticalLayout_2)
 
@@ -488,7 +478,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_8.addLayout(self.horizontalLayout_8)
 
-        self.gridLayout_5.addLayout(self.verticalLayout_8, 0, 0, 2, 1)
+        self.gridLayout_5.addLayout(self.verticalLayout_8, 0, 0, 3, 1)
 
         self.groupBox_7 = QGroupBox(self.centralwidget)
         self.groupBox_7.setObjectName("groupBox_7")
@@ -630,13 +620,9 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_10.addLayout(self.gridLayout_4)
 
-        self.gridLayout_5.addWidget(self.groupBox_7, 1, 1, 1, 1)
+        self.gridLayout_5.addWidget(self.groupBox_7, 2, 1, 1, 1)
 
-        self.groupBox_6 = QGroupBox(self.centralwidget)
-        self.groupBox_6.setObjectName("groupBox_6")
-        self.horizontalLayout_9 = QHBoxLayout(self.groupBox_6)
-        self.horizontalLayout_9.setObjectName("horizontalLayout_9")
-        self.canvas_frame = QFrame(self.groupBox_6)
+        self.canvas_frame = QFrame(self.centralwidget)
         self.canvas_frame.setObjectName("canvas_frame")
         sizePolicy1 = QSizePolicy(
             QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding
@@ -650,48 +636,15 @@ class Ui_MainWindow(object):
         self.canvas_frame.setFrameShape(QFrame.Shape.StyledPanel)
         self.canvas_frame.setFrameShadow(QFrame.Shadow.Raised)
 
-        self.horizontalLayout_9.addWidget(self.canvas_frame)
-
-        self.verticalLayout_9 = QVBoxLayout()
-        self.verticalLayout_9.setObjectName("verticalLayout_9")
-        self.verticalSpacer = QSpacerItem(
-            20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding
-        )
-
-        self.verticalLayout_9.addItem(self.verticalSpacer)
-
-        self.select_pushbutton = QPushButton(self.groupBox_6)
-        self.select_pushbutton.setObjectName("select_pushbutton")
-
-        self.verticalLayout_9.addWidget(self.select_pushbutton)
-
-        self.diap_pushbutton = QPushButton(self.groupBox_6)
-        self.diap_pushbutton.setObjectName("diap_pushbutton")
-
-        self.verticalLayout_9.addWidget(self.diap_pushbutton)
-
-        self.save_graph_pushbutton = QPushButton(self.groupBox_6)
-        self.save_graph_pushbutton.setObjectName("save_graph_pushbutton")
-
-        self.verticalLayout_9.addWidget(self.save_graph_pushbutton)
-
-        self.verticalSpacer_2 = QSpacerItem(
-            20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding
-        )
-
-        self.verticalLayout_9.addItem(self.verticalSpacer_2)
-
-        self.horizontalLayout_9.addLayout(self.verticalLayout_9)
-
-        self.gridLayout_5.addWidget(self.groupBox_6, 0, 1, 1, 1)
+        self.gridLayout_5.addWidget(self.canvas_frame, 1, 1, 1, 1)
 
         # new layout
         self.verticalLayout_11 = QVBoxLayout(self.canvas_frame)
         self.verticalLayout_11.setObjectName("verticalLayout_11")
         # canvas
-        self.mpl_canvas = FigureCanvas(Figure())
+        self.mpl_canvas = FigureCanvasQTAgg(Figure())
         # toolbar
-        self.toolbar = NavigationToolbar(canvas=self.mpl_canvas)
+        self.toolbar = NavigationToolbar2QT(canvas=self.mpl_canvas)
         # add canvas
         self.verticalLayout_11.addWidget(self.mpl_canvas)
         self.verticalLayout_11.addWidget(self.toolbar)
@@ -901,26 +854,6 @@ class Ui_MainWindow(object):
             QCoreApplication.translate(
                 "MainWindow",
                 "\u041d\u0430\u043f\u0440\u044f\u0436\u0435\u043d\u0438\u0435 (U1/U2)",  # noqa: E501
-                None,
-            )
-        )
-        self.groupBox_6.setTitle("")
-        self.select_pushbutton.setText(
-            QCoreApplication.translate(
-                "MainWindow", "\u0412\u044b\u0431\u043e\u0440", None
-            )
-        )
-        self.diap_pushbutton.setText(
-            QCoreApplication.translate(
-                "MainWindow",
-                "\u0414\u0438\u0430\u043f\u0430\u0437\u043e\u043d",
-                None,
-            )
-        )
-        self.save_graph_pushbutton.setText(
-            QCoreApplication.translate(
-                "MainWindow",
-                "\u0421\u043e\u0445\u0440\u0430\u043d\u0435\u043d\u0438\u0435",
                 None,
             )
         )
