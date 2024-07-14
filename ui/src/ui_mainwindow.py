@@ -1,55 +1,22 @@
 # -*- coding: utf-8 -*-
+# isort: skip_file
+###############################################################################
+# Form generated from reading UI file 'ui_mainwindow.ui'
+#
+# Created by: Qt User Interface Compiler version 6.7.2
+#
+# WARNING! All changes made in this file will be lost when recompiling UI file!
+###############################################################################
 
-################################################################################
-## Form generated from reading UI file 'ui_mainwindow.ui'
-##
-## Created by: Qt User Interface Compiler version 6.7.2
-##
-## WARNING! All changes made in this file will be lost when recompiling UI file!
-################################################################################
-
-from PySide6.QtCore import (
-    QCoreApplication,
-    QDate,
-    QDateTime,
-    QLocale,
-    QMetaObject,
-    QObject,
-    QPoint,
-    QRect,
-    QSize,
-    Qt,
-    QTime,
-    QUrl,
-)
-from PySide6.QtGui import (
-    QAction,
-    QBrush,
-    QColor,
-    QConicalGradient,
-    QCursor,
-    QFont,
-    QFontDatabase,
-    QGradient,
-    QIcon,
-    QImage,
-    QKeySequence,
-    QLinearGradient,
-    QPainter,
-    QPalette,
-    QPixmap,
-    QRadialGradient,
-    QTransform,
-)
+from PySide6.QtCore import QCoreApplication, QMetaObject, QRect, QSize, Qt
+from PySide6.QtGui import QAction, QFont
 from PySide6.QtWidgets import (
-    QApplication,
-    QGraphicsView,
+    QFrame,
     QGridLayout,
     QGroupBox,
     QHBoxLayout,
     QLabel,
     QLineEdit,
-    QMainWindow,
     QMenu,
     QMenuBar,
     QPushButton,
@@ -59,6 +26,11 @@ from PySide6.QtWidgets import (
     QVBoxLayout,
     QWidget,
 )
+from matplotlib.backends.backend_qtagg import (
+    FigureCanvasQTAgg as FigureCanvas,
+    NavigationToolbar2QT as NavigationToolbar,
+)
+from matplotlib.figure import Figure
 
 
 class Ui_MainWindow(object):
@@ -86,48 +58,6 @@ class Ui_MainWindow(object):
         self.centralwidget.setObjectName("centralwidget")
         self.gridLayout_5 = QGridLayout(self.centralwidget)
         self.gridLayout_5.setObjectName("gridLayout_5")
-        self.groupBox_6 = QGroupBox(self.centralwidget)
-        self.groupBox_6.setObjectName("groupBox_6")
-        self.horizontalLayout_9 = QHBoxLayout(self.groupBox_6)
-        self.horizontalLayout_9.setObjectName("horizontalLayout_9")
-        self.graphicsView = QGraphicsView(self.groupBox_6)
-        self.graphicsView.setObjectName("graphicsView")
-
-        self.horizontalLayout_9.addWidget(self.graphicsView)
-
-        self.verticalLayout_9 = QVBoxLayout()
-        self.verticalLayout_9.setObjectName("verticalLayout_9")
-        self.verticalSpacer = QSpacerItem(
-            20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding
-        )
-
-        self.verticalLayout_9.addItem(self.verticalSpacer)
-
-        self.select_pushbutton = QPushButton(self.groupBox_6)
-        self.select_pushbutton.setObjectName("select_pushbutton")
-
-        self.verticalLayout_9.addWidget(self.select_pushbutton)
-
-        self.diap_pushbutton = QPushButton(self.groupBox_6)
-        self.diap_pushbutton.setObjectName("diap_pushbutton")
-
-        self.verticalLayout_9.addWidget(self.diap_pushbutton)
-
-        self.save_graph_pushbutton = QPushButton(self.groupBox_6)
-        self.save_graph_pushbutton.setObjectName("save_graph_pushbutton")
-
-        self.verticalLayout_9.addWidget(self.save_graph_pushbutton)
-
-        self.verticalSpacer_2 = QSpacerItem(
-            20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding
-        )
-
-        self.verticalLayout_9.addItem(self.verticalSpacer_2)
-
-        self.horizontalLayout_9.addLayout(self.verticalLayout_9)
-
-        self.gridLayout_5.addWidget(self.groupBox_6, 0, 1, 1, 1)
-
         self.verticalLayout_8 = QVBoxLayout()
         self.verticalLayout_8.setObjectName("verticalLayout_8")
         self.verticalLayout_4 = QVBoxLayout()
@@ -702,6 +632,70 @@ class Ui_MainWindow(object):
 
         self.gridLayout_5.addWidget(self.groupBox_7, 1, 1, 1, 1)
 
+        self.groupBox_6 = QGroupBox(self.centralwidget)
+        self.groupBox_6.setObjectName("groupBox_6")
+        self.horizontalLayout_9 = QHBoxLayout(self.groupBox_6)
+        self.horizontalLayout_9.setObjectName("horizontalLayout_9")
+        self.canvas_frame = QFrame(self.groupBox_6)
+        self.canvas_frame.setObjectName("canvas_frame")
+        sizePolicy1 = QSizePolicy(
+            QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding
+        )
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(
+            self.canvas_frame.sizePolicy().hasHeightForWidth()
+        )
+        self.canvas_frame.setSizePolicy(sizePolicy1)
+        self.canvas_frame.setFrameShape(QFrame.Shape.StyledPanel)
+        self.canvas_frame.setFrameShadow(QFrame.Shadow.Raised)
+
+        self.horizontalLayout_9.addWidget(self.canvas_frame)
+
+        self.verticalLayout_9 = QVBoxLayout()
+        self.verticalLayout_9.setObjectName("verticalLayout_9")
+        self.verticalSpacer = QSpacerItem(
+            20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding
+        )
+
+        self.verticalLayout_9.addItem(self.verticalSpacer)
+
+        self.select_pushbutton = QPushButton(self.groupBox_6)
+        self.select_pushbutton.setObjectName("select_pushbutton")
+
+        self.verticalLayout_9.addWidget(self.select_pushbutton)
+
+        self.diap_pushbutton = QPushButton(self.groupBox_6)
+        self.diap_pushbutton.setObjectName("diap_pushbutton")
+
+        self.verticalLayout_9.addWidget(self.diap_pushbutton)
+
+        self.save_graph_pushbutton = QPushButton(self.groupBox_6)
+        self.save_graph_pushbutton.setObjectName("save_graph_pushbutton")
+
+        self.verticalLayout_9.addWidget(self.save_graph_pushbutton)
+
+        self.verticalSpacer_2 = QSpacerItem(
+            20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding
+        )
+
+        self.verticalLayout_9.addItem(self.verticalSpacer_2)
+
+        self.horizontalLayout_9.addLayout(self.verticalLayout_9)
+
+        self.gridLayout_5.addWidget(self.groupBox_6, 0, 1, 1, 1)
+
+        # new layout
+        self.verticalLayout_11 = QVBoxLayout(self.canvas_frame)
+        self.verticalLayout_11.setObjectName("verticalLayout_11")
+        # canvas
+        self.mpl_canvas = FigureCanvas(Figure())
+        # toolbar
+        self.toolbar = NavigationToolbar(canvas=self.mpl_canvas)
+        # add canvas
+        self.verticalLayout_11.addWidget(self.mpl_canvas)
+        self.verticalLayout_11.addWidget(self.toolbar)
+
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName("menubar")
@@ -724,41 +718,21 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(
             QCoreApplication.translate(
                 "MainWindow",
-                "SRK - \u043f\u043e\u0434\u0434\u0435\u0440\u0436\u043a\u0430 \u043f\u0440\u0438\u043d\u044f\u0442\u0438\u044f \u0440\u0435\u0448\u0435\u043d\u0438\u0439 \u043f\u0440\u0438 \u043e\u0446\u0435\u043d\u043a\u0435 \u0441\u043e\u0441\u0442\u043e\u044f\u043d\u0438\u044f \u0442\u0440\u0430\u043d\u0441\u0444\u043e\u0440\u043c\u0430\u0442\u043e\u0440\u043d\u043e\u0433\u043e \u043e\u0431\u043e\u0440\u0443\u0434\u043e\u0432\u0430\u043d\u0438\u044f",
+                "SRK - \u043f\u043e\u0434\u0434\u0435\u0440\u0436\u043a\u0430 \u043f\u0440\u0438\u043d\u044f\u0442\u0438\u044f \u0440\u0435\u0448\u0435\u043d\u0438\u0439 \u043f\u0440\u0438 \u043e\u0446\u0435\u043d\u043a\u0435 \u0441\u043e\u0441\u0442\u043e\u044f\u043d\u0438\u044f \u0442\u0440\u0430\u043d\u0441\u0444\u043e\u0440\u043c\u0430\u0442\u043e\u0440\u043d\u043e\u0433\u043e \u043e\u0431\u043e\u0440\u0443\u0434\u043e\u0432\u0430\u043d\u0438\u044f",  # noqa: E501
                 None,
             )
         )
         self.action.setText(
             QCoreApplication.translate(
                 "MainWindow",
-                "\u0418\u0441\u0445\u043e\u0434\u043d\u044b\u0435 \u0434\u0430\u043d\u043d\u044b\u0435",
+                "\u0418\u0441\u0445\u043e\u0434\u043d\u044b\u0435 \u0434\u0430\u043d\u043d\u044b\u0435",  # noqa: E501
                 None,
             )
         )
         self.action_2.setText(
             QCoreApplication.translate(
                 "MainWindow",
-                "\u041f\u0430\u0441\u043f\u043e\u0440\u0442\u043d\u044b\u0435 \u0434\u0430\u043d\u043d\u044b\u0435",
-                None,
-            )
-        )
-        self.groupBox_6.setTitle("")
-        self.select_pushbutton.setText(
-            QCoreApplication.translate(
-                "MainWindow", "\u0412\u044b\u0431\u043e\u0440", None
-            )
-        )
-        self.diap_pushbutton.setText(
-            QCoreApplication.translate(
-                "MainWindow",
-                "\u0414\u0438\u0430\u043f\u0430\u0437\u043e\u043d",
-                None,
-            )
-        )
-        self.save_graph_pushbutton.setText(
-            QCoreApplication.translate(
-                "MainWindow",
-                "\u0421\u043e\u0445\u0440\u0430\u043d\u0435\u043d\u0438\u0435",
+                "\u041f\u0430\u0441\u043f\u043e\u0440\u0442\u043d\u044b\u0435 \u0434\u0430\u043d\u043d\u044b\u0435",  # noqa: E501
                 None,
             )
         )
@@ -766,7 +740,7 @@ class Ui_MainWindow(object):
         self.label.setText(
             QCoreApplication.translate(
                 "MainWindow",
-                "\u0417\u0430\u0433\u0440\u0443\u0437\u043a\u0430 \u0434\u0430\u043d\u043d\u044b\u0445",
+                "\u0417\u0430\u0433\u0440\u0443\u0437\u043a\u0430 \u0434\u0430\u043d\u043d\u044b\u0445",  # noqa: E501
                 None,
             )
         )
@@ -779,7 +753,7 @@ class Ui_MainWindow(object):
         self.no_constr_radiobutton.setText(
             QCoreApplication.translate(
                 "MainWindow",
-                "\u0411\u0435\u0437 \u043e\u0433\u0440\u0430\u043d\u0438\u0447\u0435\u043d\u0438\u0439",
+                "\u0411\u0435\u0437 \u043e\u0433\u0440\u0430\u043d\u0438\u0447\u0435\u043d\u0438\u0439",  # noqa: E501
                 None,
             )
         )
@@ -793,7 +767,7 @@ class Ui_MainWindow(object):
         self.label_3.setText(
             QCoreApplication.translate(
                 "MainWindow",
-                "\u0412\u044b\u0431\u043e\u0440 \u0434\u0438\u0430\u043f\u0430\u0437\u043e\u043d\u0430:",
+                "\u0412\u044b\u0431\u043e\u0440 \u0434\u0438\u0430\u043f\u0430\u0437\u043e\u043d\u0430:",  # noqa: E501
                 None,
             )
         )
@@ -803,21 +777,19 @@ class Ui_MainWindow(object):
         self.label_4.setText(
             QCoreApplication.translate("MainWindow", "\u0434\u043e", None)
         )
-        self.to_points_lineedit.setText(
-            QCoreApplication.translate("MainWindow", "90000", None)
-        )
+        self.to_points_lineedit.setText("")
         self.groupBox.setTitle("")
         self.show_table_pushbutton.setText(
             QCoreApplication.translate(
                 "MainWindow",
-                "\u041f\u0440\u043e\u0441\u043c\u043e\u0442\u0440 \u0442\u0430\u0431\u043b\u0438\u0446\u044b",
+                "\u041f\u0440\u043e\u0441\u043c\u043e\u0442\u0440 \u0442\u0430\u0431\u043b\u0438\u0446\u044b",  # noqa: E501
                 None,
             )
         )
         self.label_5.setText(
             QCoreApplication.translate(
                 "MainWindow",
-                "\u041d\u0430\u0447\u0430\u043b\u044c\u043d\u044b\u0439 \u0442\u043e\u043a:",
+                "\u041d\u0430\u0447\u0430\u043b\u044c\u043d\u044b\u0439 \u0442\u043e\u043a:",  # noqa: E501
                 None,
             )
         )
@@ -828,7 +800,7 @@ class Ui_MainWindow(object):
         self.label_7.setText(
             QCoreApplication.translate(
                 "MainWindow",
-                "\u0420\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442\u044b \u0440\u0430\u0437\u043b\u043e\u0436\u0435\u043d\u0438\u044f",
+                "\u0420\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442\u044b \u0440\u0430\u0437\u043b\u043e\u0436\u0435\u043d\u0438\u044f",  # noqa: E501
                 None,
             )
         )
@@ -854,7 +826,7 @@ class Ui_MainWindow(object):
         self.label_25.setText(
             QCoreApplication.translate(
                 "MainWindow",
-                "\u041e\u0446\u0435\u043d\u043a\u0430 \u0440\u0430\u0437\u043b\u043e\u0436\u0435\u043d\u0438\u044f",
+                "\u041e\u0446\u0435\u043d\u043a\u0430 \u0440\u0430\u0437\u043b\u043e\u0436\u0435\u043d\u0438\u044f",  # noqa: E501
                 None,
             )
         )
@@ -877,7 +849,7 @@ class Ui_MainWindow(object):
         self.label_26.setText(
             QCoreApplication.translate(
                 "MainWindow",
-                "\u041a\u0440\u0438\u0442\u0435\u0440\u0438\u0439 \u043e\u0431\u043d\u0430\u0440\u0443\u0436\u0435\u043d\u0438\u044f \u0434\u0435\u0444\u0435\u043a\u0442\u0430",
+                "\u041a\u0440\u0438\u0442\u0435\u0440\u0438\u0439 \u043e\u0431\u043d\u0430\u0440\u0443\u0436\u0435\u043d\u0438\u044f \u0434\u0435\u0444\u0435\u043a\u0442\u0430",  # noqa: E501
                 None,
             )
         )
@@ -895,7 +867,7 @@ class Ui_MainWindow(object):
         self.label_9.setText(
             QCoreApplication.translate(
                 "MainWindow",
-                "\u041f\u0430\u0441\u043f\u043e\u0440\u0442\u043d\u044b\u0435 \u0434\u0430\u043d\u043d\u044b\u0435",
+                "\u041f\u0430\u0441\u043f\u043e\u0440\u0442\u043d\u044b\u0435 \u0434\u0430\u043d\u043d\u044b\u0435",  # noqa: E501
                 None,
             )
         )
@@ -907,14 +879,14 @@ class Ui_MainWindow(object):
         self.label_14.setText(
             QCoreApplication.translate(
                 "MainWindow",
-                "\u041c\u0430\u0442\u0435\u0440\u0438\u0430\u043b \u043e\u0431\u043c\u043e\u0442\u043a\u0438",
+                "\u041c\u0430\u0442\u0435\u0440\u0438\u0430\u043b \u043e\u0431\u043c\u043e\u0442\u043a\u0438",  # noqa: E501
                 None,
             )
         )
         self.label_13.setText(
             QCoreApplication.translate(
                 "MainWindow",
-                "\u041a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e \u0444\u0430\u0437",
+                "\u041a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e \u0444\u0430\u0437",  # noqa: E501
                 None,
             )
         )
@@ -928,7 +900,27 @@ class Ui_MainWindow(object):
         self.label_12.setText(
             QCoreApplication.translate(
                 "MainWindow",
-                "\u041d\u0430\u043f\u0440\u044f\u0436\u0435\u043d\u0438\u0435 (U1/U2)",
+                "\u041d\u0430\u043f\u0440\u044f\u0436\u0435\u043d\u0438\u0435 (U1/U2)",  # noqa: E501
+                None,
+            )
+        )
+        self.groupBox_6.setTitle("")
+        self.select_pushbutton.setText(
+            QCoreApplication.translate(
+                "MainWindow", "\u0412\u044b\u0431\u043e\u0440", None
+            )
+        )
+        self.diap_pushbutton.setText(
+            QCoreApplication.translate(
+                "MainWindow",
+                "\u0414\u0438\u0430\u043f\u0430\u0437\u043e\u043d",
+                None,
+            )
+        )
+        self.save_graph_pushbutton.setText(
+            QCoreApplication.translate(
+                "MainWindow",
+                "\u0421\u043e\u0445\u0440\u0430\u043d\u0435\u043d\u0438\u0435",
                 None,
             )
         )

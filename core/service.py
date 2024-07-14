@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 
-from core.decompose import get_coefficients
+from core.decompose import get_coefficients, get_metrics
 
 
 class DataHandler:
@@ -33,3 +33,8 @@ class DataHandler:
 
     def get_coefficients(self):
         return get_coefficients(t=self.__data.index, y=self.__data["dataset"])
+
+    def get_metrics(self, popt):
+        return get_metrics(
+            t=self.__data.index, y=self.__data["dataset"], popt=popt
+        )
