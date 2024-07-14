@@ -92,11 +92,6 @@ jobs:
       with:
         path: dist
         merge-multiple: true
-    - name: Watch files
-      run: |
-        ls -lh
-        cd dist
-        ls -lh
     - name: Release
       uses: softprops/action-gh-release@v2
       with:
