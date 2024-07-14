@@ -32,7 +32,7 @@ def get_metrics(
 
 
 def _func(t, c_1, a_1, c_2, a_2, c_3, a_3):
-    """Моедлируемая функция - сумма трех экспонент."""
+    """Моделируемая функция - сумма трех экспонент."""
     return (
         np.multiply(c_1, np.exp(a_1 * t))
         + np.multiply(c_2, np.exp(a_2 * t))
