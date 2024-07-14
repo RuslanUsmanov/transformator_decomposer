@@ -10,12 +10,8 @@ defaults:
     shell: bash
 
 jobs:
-  build:
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest]
-
-    runs-on: ${{ matrix.os }}
+  build-ubuntu:
+    runs-on: ubuntu-latest
 
     steps:
     - name: Check-out repository
@@ -35,19 +31,65 @@ jobs:
     - name: Install Dependencies
       run: |
         poetry install --without=dev
+        poetry install pyinstaller
 
-    - name: Build Executable with Nuitka
-      uses: Nuitka/Nuitka-Action@main
-      with:
-        nuitka-version: main
-        script-name: main.py
-        onefile: true
+    - name: Build Executable pyinstaller
+      run: |
+        pyinstaller main.py -F -n transformator
 
     - name: Upload Artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
-        name: ${{ runner.os }} Build
+        name: build_artifacts
         path: | # match what's created for the 3 OSes
-            build/*.exe
-            build/*.bin
-            build/*.app/**/*
+            dist/transformator
+
+  build-windows:
+    runs-on: windows-latest
+    steps:
+    - name: Check-out repository
+      uses: actions/checkout@v4
+
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+
+    - name: Install and configure Poetry
+      uses: snok/install-poetry@v1
+      with:
+        virtualenvs-create: false
+        installer-parallel: true
+
+    - name: Install Dependencies
+      run: |
+        poetry install --without=dev
+        poetry install pyinstaller
+
+    - name: Build Executable pyinstaller
+      run: |
+        pyinstaller main.py -F --hide-console hide-early -n transformator
+
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: build_artifacts
+        path: | # match what's created for the 3 OSes
+            dist/transformator.exe
+
+  release:
+    name: Create Release
+    needs:
+      - build-ubuntu
+      - build-windows
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Download artifacts
+      uses: actions/download-artifact@v4
+      with:
+        path: dist
+    - name: Create Release
+      uses: ncipollo/release-action@v1
+      with:
+        artifacts: "dist/*"
