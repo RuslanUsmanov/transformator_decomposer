@@ -30,20 +30,20 @@ jobs:
 
     - name: Install Dependencies
       run: |
-        poetry install --without=dev
+        python -m poetry install --without=dev
 
-    # - name: Build Executable with Nuitka
-    #   uses: Nuitka/Nuitka-Action@main
-    #   with:
-    #     nuitka-version: main
-    #     script-name: main.py
-    #     onefile: true
+    - name: Build Executable with Nuitka
+      uses: Nuitka/Nuitka-Action@main
+      with:
+        nuitka-version: main
+        script-name: main.py
+        onefile: true
 
-    # - name: Upload Artifacts
-    #   uses: actions/upload-artifact@v3
-    #   with:
-    #     name: ${{ runner.os }} Build
-    #     path: | # match what's created for the 3 OSes
-    #         build/*.exe
-    #         build/*.bin
-    #         build/*.app/**/*
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: ${{ runner.os }} Build
+        path: | # match what's created for the 3 OSes
+            build/*.exe
+            build/*.bin
+            build/*.app/**/*
