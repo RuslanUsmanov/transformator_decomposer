@@ -10,6 +10,15 @@ from sklearn.metrics import (
 
 
 def get_coefficients(t: np.array, y: np.array) -> np.ndarray[np.float64]:
+    """Выполняет оптимизацию целевой функции к заданным значениям.
+
+    Args:
+        t: Массив значений времени.
+        y: Массив значений ряда.
+
+    Returns:
+        Массив коэффициентов целевой функции.
+    """
     popt, _ = curve_fit(
         f=_func,
         xdata=t,
@@ -22,6 +31,16 @@ def get_coefficients(t: np.array, y: np.array) -> np.ndarray[np.float64]:
 def get_metrics(
     t: np.ndarray, y: np.array, popt: list[np.float64]
 ) -> dict[str, np.float64]:
+    """Вычисление метрик между реальными значениями и моделируемой функцией.
+
+    Args:
+        t: Массив значений времени.
+        y: Массив значений ряда.
+        popt: Список коэффициентов, которые подставляются в функцию.
+
+    Returns:
+        Словарь с метриками.
+    """
     mae = mean_absolute_error(y, _func(t, *popt))
     mape = mean_absolute_percentage_error(y, _func(t, *popt))
     mdae = median_absolute_error(y, _func(t, *popt))
