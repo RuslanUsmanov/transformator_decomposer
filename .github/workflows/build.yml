@@ -31,7 +31,7 @@ jobs:
     - name: Install Dependencies
       run: |
         poetry install --without=dev
-        poetry install pyinstaller
+        poetry add pyinstaller
 
     - name: Build Executable pyinstaller
       run: |
@@ -64,7 +64,7 @@ jobs:
     - name: Install Dependencies
       run: |
         poetry install --without=dev
-        poetry install pyinstaller
+        poetry add pyinstaller
 
     - name: Build Executable pyinstaller
       run: |
