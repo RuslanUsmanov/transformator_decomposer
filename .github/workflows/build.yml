@@ -5,6 +5,10 @@ on:
     tags:
       - '*'
 
+defaults:
+  run:
+    shell: bash
+
 jobs:
   build:
     strategy:
@@ -30,7 +34,7 @@ jobs:
 
     - name: Install Dependencies
       run: |
-        python -m poetry install --without=dev
+        poetry install --without=dev
 
     - name: Build Executable with Nuitka
       uses: Nuitka/Nuitka-Action@main
