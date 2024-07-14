@@ -7,3 +7,6 @@ env/
 __pycache__/
 data/
 jupyter/
+build/
+dist/
+*.spec
