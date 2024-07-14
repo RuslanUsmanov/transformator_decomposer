@@ -79,6 +79,8 @@ jobs:
 
   release:
     name: Create Release
+    permissions:
+      contents: write
     needs:
       - build-ubuntu
       - build-windows
