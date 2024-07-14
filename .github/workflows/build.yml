@@ -78,6 +78,7 @@ jobs:
             dist/transformator.exe
 
   release:
+    permissions: write-all
     name: Create Release
     needs:
       - build-ubuntu
