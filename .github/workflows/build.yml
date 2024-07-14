@@ -1,0 +1,49 @@
+name: Build executable from python project
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    - name: Check-out repository
+      uses: actions/checkout@v4
+
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+
+    - name: Install and configure Poetry
+      uses: snok/install-poetry@v1
+      with:
+        virtualenvs-create: false
+        installer-parallel: true
+
+    - name: Install Dependencies
+      run: |
+        poetry install --without=dev
+
+    # - name: Build Executable with Nuitka
+    #   uses: Nuitka/Nuitka-Action@main
+    #   with:
+    #     nuitka-version: main
+    #     script-name: main.py
+    #     onefile: true
+
+    # - name: Upload Artifacts
+    #   uses: actions/upload-artifact@v3
+    #   with:
+    #     name: ${{ runner.os }} Build
+    #     path: | # match what's created for the 3 OSes
+    #         build/*.exe
+    #         build/*.bin
+    #         build/*.app/**/*
