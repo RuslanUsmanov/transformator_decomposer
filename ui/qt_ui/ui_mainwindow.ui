@@ -51,21 +51,21 @@
           </spacer>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_3">
+          <widget class="QPushButton" name="select_pushbutton">
            <property name="text">
             <string>Выбор</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_4">
+          <widget class="QPushButton" name="diap_pushbutton">
            <property name="text">
             <string>Диапазон</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_5">
+          <widget class="QPushButton" name="save_graph_pushbutton">
            <property name="text">
             <string>Сохранение</string>
            </property>
@@ -107,7 +107,7 @@
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton">
+            <widget class="QPushButton" name="select_files_pushbutton">
              <property name="text">
               <string>Обзор</string>
              </property>
@@ -286,7 +286,7 @@
           </property>
           <layout class="QHBoxLayout" name="horizontalLayout_6">
            <item>
-            <widget class="QPushButton" name="pushButton_2">
+            <widget class="QPushButton" name="show_table_pushbutton">
              <property name="text">
               <string>Просмотр таблицы</string>
              </property>
