@@ -42,7 +42,7 @@ jobs:
       with:
         name: build_ubuntu
         path: | # match what's created for the 3 OSes
-            dist/transformator
+            dist/transformator-linux.bin
 
   build-windows:
     runs-on: windows-latest
@@ -75,7 +75,7 @@ jobs:
       with:
         name: build_windows
         path: | # match what's created for the 3 OSes
-            dist/transformator.exe
+            dist/transformator-windows.exe
 
   release:
     name: Create Release
