@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "transform"
+version = "0.1.0"
+description = ""
+authors = ["RuslanUsmanov <usmanovruslan322@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "~3.12"
+jupyterlab = "^4.2.3"
+pandas = "^2.2.2"
+scipy = "^1.14.0"
+pyside6 = "^6.7.2"
+matplotlib = "^3.9.1"
+scikit-learn = "^1.5.1"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.2.2"
+coverage = "^7.6.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
