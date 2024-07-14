@@ -47,6 +47,9 @@ class TrasformatorDesomposer(QMainWindow):
             msg_box.showMessage(f"Ошибка во время чтения файла:\n{repr(ex)}")
             return
 
+        self.ui.current_start_lineedit.setText(
+            f"{float(self.dHandler.data["dataset"][0]):.6f}"
+        )
         popt = self.dHandler.get_coefficients()
         mertics = self.dHandler.get_metrics(popt)
         self._update_coeffs(popt)
@@ -56,19 +59,19 @@ class TrasformatorDesomposer(QMainWindow):
         QGuiApplication.restoreOverrideCursor()
 
     def _update_coeffs(self, popt):
-        self.ui.c1_lineedit.setText(str(popt[0]))
-        self.ui.a1_lineedit.setText(str(popt[1]))
-        self.ui.c2_lineedit.setText(str(popt[2]))
-        self.ui.a2_lineedit.setText(str(popt[3]))
-        self.ui.c3_lineedit.setText(str(popt[4]))
-        self.ui.a3_lineedit.setText(str(popt[5]))
+        self.ui.c1_lineedit.setText(f"{float(popt[0]):.6f}")
+        self.ui.a1_lineedit.setText(f"{float(popt[1]):.6f}")
+        self.ui.c2_lineedit.setText(f"{float(popt[2]):.6f}")
+        self.ui.a2_lineedit.setText(f"{float(popt[3]):.6f}")
+        self.ui.c3_lineedit.setText(f"{float(popt[4]):.6f}")
+        self.ui.a3_lineedit.setText(f"{float(popt[5]):.6f}")
 
     def _update_metrics(self, metrics):
-        self.ui.mae_lineedit.setText(str(metrics["mae"]))
-        self.ui.mape_lineedit.setText(str(metrics["mape"]))
-        self.ui.mdae_linedit.setText(str(metrics["mdae"]))
-        self.ui.mse_lineedit.setText(str(metrics["mse"]))
-        self.ui.r2_lineedit.setText(str(metrics["r2"]))
+        self.ui.mae_lineedit.setText(f"{float(metrics["mae"]):.6f}")
+        self.ui.mape_lineedit.setText(f"{float(metrics["mape"]):.6f}")
+        self.ui.mdae_linedit.setText(f"{float(metrics["mdae"]):.6f}")
+        self.ui.mse_lineedit.setText(f"{float(metrics["mse"]):.6f}")
+        self.ui.r2_lineedit.setText(f"{float(metrics["r2"]):.6f}")
 
     def _draw_plot(self):
         self.ui.mpl_canvas.figure.clear()
