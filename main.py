@@ -76,7 +76,11 @@ class TrasformatorDesomposer(QMainWindow):
     def _draw_plot(self):
         self.ui.mpl_canvas.figure.clear()
         ax = self.ui.mpl_canvas.figure.subplots()
-        ax.plot(self.dHandler.data.index, self.dHandler.data["dataset"])
+        ax.plot(
+            self.dHandler.data.index,
+            self.dHandler.data["dataset"],
+            label="Исходный ряд"
+        )
         ax.grid(True)
         self.ui.mpl_canvas.draw()
 
