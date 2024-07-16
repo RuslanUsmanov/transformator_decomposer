@@ -1,5 +1,5 @@
-import os
 import sys
+from pathlib import Path
 
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QGuiApplication
@@ -30,8 +30,8 @@ class TrasformatorDesomposer(QMainWindow):
         filenames, _ = QFileDialog.getOpenFileName(
             self,
             caption="Выберите файлы",
-            filter="Файл данных (*.txt *.csv *.dat)",
-            dir=f"{os.getenv("HOME")}",
+            filter="Файл данных (*.txt *.csv)",
+            dir=str(Path.home())
         )
         if not filenames:
             return
