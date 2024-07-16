@@ -670,19 +670,6 @@
            </item>
            <item>
             <layout class="QGridLayout" name="gridLayout_3">
-             <item row="0" column="0">
-              <widget class="QLabel" name="label_27">
-               <property name="maximumSize">
-                <size>
-                 <width>75</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="text">
-                <string>Квкз</string>
-               </property>
-              </widget>
-             </item>
              <item row="0" column="1">
               <widget class="QLineEdit" name="kvkz_lineedit">
                <property name="maximumSize">
@@ -706,6 +693,19 @@
                </property>
                <property name="text">
                 <string>Кст</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_27">
+               <property name="maximumSize">
+                <size>
+                 <width>75</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>Квкз</string>
                </property>
               </widget>
              </item>
@@ -1028,19 +1028,29 @@
     <property name="title">
      <string>Настройка</string>
     </property>
-    <addaction name="action"/>
-    <addaction name="action_2"/>
+    <addaction name="source_params_action"/>
+    <addaction name="passport_params_action"/>
    </widget>
    <addaction name="menu"/>
   </widget>
-  <action name="action">
+  <action name="source_params_action">
    <property name="text">
     <string>Исходные данные</string>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
   </action>
-  <action name="action_2">
+  <action name="passport_params_action">
    <property name="text">
     <string>Паспортные данные</string>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
    </property>
   </action>
  </widget>

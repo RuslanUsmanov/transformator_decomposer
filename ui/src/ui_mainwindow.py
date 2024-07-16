@@ -50,10 +50,12 @@ class Ui_MainWindow(object):
         font = QFont()
         font.setPointSize(12)
         MainWindow.setFont(font)
-        self.action = QAction(MainWindow)
-        self.action.setObjectName("action")
-        self.action_2 = QAction(MainWindow)
-        self.action_2.setObjectName("action_2")
+        self.source_params_action = QAction(MainWindow)
+        self.source_params_action.setObjectName("source_params_action")
+        self.source_params_action.setFont(font)
+        self.passport_params_action = QAction(MainWindow)
+        self.passport_params_action.setObjectName("passport_params_action")
+        self.passport_params_action.setFont(font)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.gridLayout_5 = QGridLayout(self.centralwidget)
@@ -440,12 +442,6 @@ class Ui_MainWindow(object):
 
         self.gridLayout_3 = QGridLayout()
         self.gridLayout_3.setObjectName("gridLayout_3")
-        self.label_27 = QLabel(self.groupBox_5)
-        self.label_27.setObjectName("label_27")
-        self.label_27.setMaximumSize(QSize(75, 16777215))
-
-        self.gridLayout_3.addWidget(self.label_27, 0, 0, 1, 1)
-
         self.kvkz_lineedit = QLineEdit(self.groupBox_5)
         self.kvkz_lineedit.setObjectName("kvkz_lineedit")
         self.kvkz_lineedit.setMaximumSize(QSize(250, 16777215))
@@ -458,6 +454,12 @@ class Ui_MainWindow(object):
         self.label_28.setMaximumSize(QSize(75, 16777215))
 
         self.gridLayout_3.addWidget(self.label_28, 1, 0, 1, 1)
+
+        self.label_27 = QLabel(self.groupBox_5)
+        self.label_27.setObjectName("label_27")
+        self.label_27.setMaximumSize(QSize(75, 16777215))
+
+        self.gridLayout_3.addWidget(self.label_27, 0, 0, 1, 1)
 
         self.kst_lineedit = QLineEdit(self.groupBox_5)
         self.kst_lineedit.setObjectName("kst_lineedit")
@@ -658,8 +660,8 @@ class Ui_MainWindow(object):
         MainWindow.setMenuBar(self.menubar)
 
         self.menubar.addAction(self.menu.menuAction())
-        self.menu.addAction(self.action)
-        self.menu.addAction(self.action_2)
+        self.menu.addAction(self.source_params_action)
+        self.menu.addAction(self.passport_params_action)
 
         self.retranslateUi(MainWindow)
 
@@ -675,14 +677,14 @@ class Ui_MainWindow(object):
                 None,
             )
         )
-        self.action.setText(
+        self.source_params_action.setText(
             QCoreApplication.translate(
                 "MainWindow",
                 "\u0418\u0441\u0445\u043e\u0434\u043d\u044b\u0435 \u0434\u0430\u043d\u043d\u044b\u0435",  # noqa: E501
                 None,
             )
         )
-        self.action_2.setText(
+        self.passport_params_action.setText(
             QCoreApplication.translate(
                 "MainWindow",
                 "\u041f\u0430\u0441\u043f\u043e\u0440\u0442\u043d\u044b\u0435 \u0434\u0430\u043d\u043d\u044b\u0435",  # noqa: E501
@@ -806,14 +808,14 @@ class Ui_MainWindow(object):
                 None,
             )
         )
-        self.label_27.setText(
-            QCoreApplication.translate(
-                "MainWindow", "\u041a\u0432\u043a\u0437", None
-            )
-        )
         self.label_28.setText(
             QCoreApplication.translate(
                 "MainWindow", "\u041a\u0441\u0442", None
+            )
+        )
+        self.label_27.setText(
+            QCoreApplication.translate(
+                "MainWindow", "\u041a\u0432\u043a\u0437", None
             )
         )
         self.groupBox_7.setTitle("")
