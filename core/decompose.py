@@ -57,3 +57,25 @@ def func(t, c_1, a_1, c_2, a_2, c_3, a_3):
         + np.multiply(c_2, np.exp(-a_2 * t))
         + np.multiply(c_3, np.exp(-a_3 * t))
     )
+
+
+def calc_kvkz(popt_1, popt_2):
+    """
+    popt_1: (C_1, A_1, C_2, A_2, C_3, A_3)
+    popt_2: (C_4, A_4, C_5, A_5, C_6, A_6)
+    kvkz = abs(A_5/A_2)
+    """
+    return np.abs(popt_2[3] / popt_1[3])
+
+
+def calc_kst(popt_1, popt_2):
+    """
+    popt_1: (C_1, A_1, C_2, A_2, C_3, A_3)
+    popt_2: (C_4, A_4, C_5, A_5, C_6, A_6)
+    kst = abs(A_4/A_1)
+    """
+    if np.abs(popt_1[1]) < np.abs(popt_1[3]) < np.abs(popt_1[5]) and np.abs(
+        popt_2[1]
+    ) < np.abs(popt_2[3]) < np.abs(popt_2[5]):
+        return np.abs(popt_2[1] / popt_1[1])
+    return None
