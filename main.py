@@ -101,20 +101,27 @@ class TrasformatorDesomposer(QMainWindow):
         self._update_passport_ui()
 
     def _init_data(self):
-        """Инициализация переменных."""
-        self.datasets: dict[str, service.DataSet] = {}
+        self.dHandler = service.DataHandler()
         self._source_params = SourceParams()
         self._passport_params = PassportParams()
+        self._ranges = None
 
     def _connect_handlers(self):
+        """Подключение обработчиков к кнопкам и т.д."""
         self.ui.select_files_pushbutton.clicked.connect(
-            self.open_select_files_dialog,
+            self._open_select_files_dialog,
         )
         self.ui.source_params_action.triggered.connect(
-            self._show_source_settings_window,
+            self.source_params_window.show,
         )
         self.ui.passport_params_action.triggered.connect(
-            self._show_passport_settings_window,
+            self.passport_params_window.show,
+        )
+        self.ui.data_view_pushbutton.clicked.connect(
+            self.data_view_window.show,
+        )
+        self.ui.calculate_pushbutton.clicked.connect(
+            self.data_select_window.show
         )
         self.ui.constr_radiobutton.clicked.connect(
             self._toggle_ranges
@@ -129,6 +136,9 @@ class TrasformatorDesomposer(QMainWindow):
         )
         self.source_params_window.accepted.connect(
             self._update_source_params,
+        )
+        self.data_select_window.accepted.connect(
+            self._calculate_all
         )
 
     def open_select_files_dialog(self):
