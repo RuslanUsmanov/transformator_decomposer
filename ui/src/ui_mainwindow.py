@@ -174,35 +174,58 @@ class Ui_MainWindow(object):
         self.groupBox.setObjectName("groupBox")
         self.horizontalLayout_6 = QHBoxLayout(self.groupBox)
         self.horizontalLayout_6.setObjectName("horizontalLayout_6")
-        self.show_table_pushbutton = QPushButton(self.groupBox)
-        self.show_table_pushbutton.setObjectName("show_table_pushbutton")
+        self.show_files_pushbutton = QPushButton(self.groupBox)
+        self.show_files_pushbutton.setObjectName("show_files_pushbutton")
+        self.show_files_pushbutton.setEnabled(True)
 
-        self.horizontalLayout_6.addWidget(self.show_table_pushbutton)
+        self.horizontalLayout_6.addWidget(self.show_files_pushbutton)
 
-        self.verticalLayout_3 = QVBoxLayout()
+        self.horizontalSpacer_14 = QSpacerItem(
+            40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum
+        )
+
+        self.horizontalLayout_6.addItem(self.horizontalSpacer_14)
+
+        self.calculate_pushbutton = QPushButton(self.groupBox)
+        self.calculate_pushbutton.setObjectName("calculate_pushbutton")
+        self.calculate_pushbutton.setEnabled(True)
+
+        self.horizontalLayout_6.addWidget(self.calculate_pushbutton)
+
+        self.horizontalSpacer_13 = QSpacerItem(
+            40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum
+        )
+
+        self.horizontalLayout_6.addItem(self.horizontalSpacer_13)
+
+        self.groupBox_starting_current = QGroupBox(self.groupBox)
+        self.groupBox_starting_current.setObjectName(
+            "groupBox_starting_current"
+        )
+        self.verticalLayout_3 = QVBoxLayout(self.groupBox_starting_current)
         self.verticalLayout_3.setObjectName("verticalLayout_3")
-        self.label_5 = QLabel(self.groupBox)
+        self.label_5 = QLabel(self.groupBox_starting_current)
         self.label_5.setObjectName("label_5")
 
         self.verticalLayout_3.addWidget(self.label_5)
 
         self.horizontalLayout_5 = QHBoxLayout()
         self.horizontalLayout_5.setObjectName("horizontalLayout_5")
-        self.current_start_lineedit = QLineEdit(self.groupBox)
+        self.current_start_lineedit = QLineEdit(self.groupBox_starting_current)
         self.current_start_lineedit.setObjectName("current_start_lineedit")
         self.current_start_lineedit.setMaximumSize(QSize(150, 16777215))
         self.current_start_lineedit.setReadOnly(True)
 
         self.horizontalLayout_5.addWidget(self.current_start_lineedit)
 
-        self.label_6 = QLabel(self.groupBox)
+        self.label_6 = QLabel(self.groupBox_starting_current)
         self.label_6.setObjectName("label_6")
 
         self.horizontalLayout_5.addWidget(self.label_6)
 
         self.verticalLayout_3.addLayout(self.horizontalLayout_5)
 
-        self.horizontalLayout_6.addLayout(self.verticalLayout_3)
+        self.horizontalLayout_6.addWidget(self.groupBox_starting_current)
 
         self.verticalLayout_4.addWidget(self.groupBox)
 
@@ -328,6 +351,14 @@ class Ui_MainWindow(object):
         self.gridLayout.addLayout(self.horizontalLayout_15, 0, 1, 1, 1)
 
         self.verticalLayout_5.addLayout(self.gridLayout)
+
+        self.compare_pushbutton = QPushButton(self.groupBox_3)
+        self.compare_pushbutton.setObjectName("compare_pushbutton")
+        self.compare_pushbutton.setEnabled(True)
+        self.compare_pushbutton.setAutoDefault(False)
+        self.compare_pushbutton.setFlat(False)
+
+        self.verticalLayout_5.addWidget(self.compare_pushbutton)
 
         self.verticalLayout_8.addWidget(self.groupBox_3)
 
@@ -671,6 +702,8 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
+        self.compare_pushbutton.setDefault(False)
+
         QMetaObject.connectSlotsByName(MainWindow)
 
     # setupUi
@@ -740,10 +773,17 @@ class Ui_MainWindow(object):
         )
         self.to_points_lineedit.setText("")
         self.groupBox.setTitle("")
-        self.show_table_pushbutton.setText(
+        self.show_files_pushbutton.setText(
             QCoreApplication.translate(
                 "MainWindow",
-                "\u041f\u0440\u043e\u0441\u043c\u043e\u0442\u0440 \u0442\u0430\u0431\u043b\u0438\u0446\u044b",  # noqa: E501
+                "\u041f\u0440\u043e\u0441\u043c\u043e\u0442\u0440 \u0434\u0430\u043d\u043d\u044b\u0445",  # noqa: E501
+                None,
+            )
+        )
+        self.calculate_pushbutton.setText(
+            QCoreApplication.translate(
+                "MainWindow",
+                "\u0420\u0430\u0441\u0441\u0447\u0438\u0442\u0430\u0442\u044c",
                 None,
             )
         )
@@ -782,6 +822,13 @@ class Ui_MainWindow(object):
         )
         self.label_17.setText(
             QCoreApplication.translate("MainWindow", "A1", None)
+        )
+        self.compare_pushbutton.setText(
+            QCoreApplication.translate(
+                "MainWindow",
+                "\u0421\u0440\u0430\u0432\u043d\u0435\u043d\u0438\u0435 \u0433\u0440\u0430\u0444\u0438\u043a\u043e\u0432",  # noqa: E501
+                None,
+            )
         )
         self.groupBox_4.setTitle("")
         self.label_25.setText(
