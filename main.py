@@ -81,13 +81,20 @@ class TrasformatorDesomposer(QMainWindow):
         self.ui.setupUi(self)
 
         self.source_params_window = QDialog()
-        self.passport_params_window = QDialog()
-
         self.ui_source = Ui_SourceParamsDialog()
         self.ui_source.setupUi(self.source_params_window)
 
+        self.passport_params_window = QDialog()
         self.ui_passport = Ui_PassportParamsDialog()
         self.ui_passport.setupUi(self.passport_params_window)
+
+        self.data_select_window = QDialog()
+        self.ui_select_data = Ui_DataSelectDialog()
+        self.ui_select_data.setupUi(self.data_select_window)
+
+        self.data_view_window = QDialog()
+        self.ui_view_data = Ui_DataViewDialog()
+        self.ui_view_data.setupUi(self.data_view_window)
 
         self._connect_handlers()
         self._init_data()
