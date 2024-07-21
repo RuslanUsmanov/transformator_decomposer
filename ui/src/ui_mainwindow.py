@@ -28,6 +28,7 @@ from PySide6.QtWidgets import (
     QRadioButton,
     QSizePolicy,
     QSpacerItem,
+    QTabWidget,
     QVBoxLayout,
     QWidget,
 )
@@ -63,6 +64,22 @@ class Ui_MainWindow(object):
         self.centralwidget.setObjectName("centralwidget")
         self.gridLayout_5 = QGridLayout(self.centralwidget)
         self.gridLayout_5.setObjectName("gridLayout_5")
+        self.canvas_frame = QFrame(self.centralwidget)
+        self.canvas_frame.setObjectName("canvas_frame")
+        sizePolicy1 = QSizePolicy(
+            QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding
+        )
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(
+            self.canvas_frame.sizePolicy().hasHeightForWidth()
+        )
+        self.canvas_frame.setSizePolicy(sizePolicy1)
+        self.canvas_frame.setFrameShape(QFrame.Shape.StyledPanel)
+        self.canvas_frame.setFrameShadow(QFrame.Shadow.Raised)
+
+        self.gridLayout_5.addWidget(self.canvas_frame, 1, 1, 1, 1)
+
         self.verticalLayout_8 = QVBoxLayout()
         self.verticalLayout_8.setObjectName("verticalLayout_8")
         self.verticalLayout_4 = QVBoxLayout()
@@ -174,11 +191,11 @@ class Ui_MainWindow(object):
         self.groupBox.setObjectName("groupBox")
         self.horizontalLayout_6 = QHBoxLayout(self.groupBox)
         self.horizontalLayout_6.setObjectName("horizontalLayout_6")
-        self.show_files_pushbutton = QPushButton(self.groupBox)
-        self.show_files_pushbutton.setObjectName("show_files_pushbutton")
-        self.show_files_pushbutton.setEnabled(True)
+        self.data_view_pushbutton = QPushButton(self.groupBox)
+        self.data_view_pushbutton.setObjectName("data_view_pushbutton")
+        self.data_view_pushbutton.setEnabled(True)
 
-        self.horizontalLayout_6.addWidget(self.show_files_pushbutton)
+        self.horizontalLayout_6.addWidget(self.data_view_pushbutton)
 
         self.horizontalSpacer_14 = QSpacerItem(
             40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum
@@ -246,119 +263,232 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_5.addWidget(self.label_7)
 
+        self.decomp_tabwidget = QTabWidget(self.groupBox_3)
+        self.decomp_tabwidget.setObjectName("decomp_tabwidget")
+        self.tab_1 = QWidget()
+        self.tab_1.setObjectName("tab_1")
+        self.verticalLayout_9 = QVBoxLayout(self.tab_1)
+        self.verticalLayout_9.setObjectName("verticalLayout_9")
         self.gridLayout = QGridLayout()
         self.gridLayout.setObjectName("gridLayout")
         self.horizontalLayout_14 = QHBoxLayout()
         self.horizontalLayout_14.setObjectName("horizontalLayout_14")
-        self.label_16 = QLabel(self.groupBox_3)
+        self.label_16 = QLabel(self.tab_1)
         self.label_16.setObjectName("label_16")
         self.label_16.setMaximumSize(QSize(30, 16777215))
 
         self.horizontalLayout_14.addWidget(self.label_16)
 
-        self.c3_lineedit = QLineEdit(self.groupBox_3)
-        self.c3_lineedit.setObjectName("c3_lineedit")
-        self.c3_lineedit.setMaximumSize(QSize(250, 16777215))
-        self.c3_lineedit.setReadOnly(True)
+        self.c3_lineedit_1 = QLineEdit(self.tab_1)
+        self.c3_lineedit_1.setObjectName("c3_lineedit_1")
+        self.c3_lineedit_1.setMaximumSize(QSize(250, 16777215))
+        self.c3_lineedit_1.setReadOnly(True)
 
-        self.horizontalLayout_14.addWidget(self.c3_lineedit)
+        self.horizontalLayout_14.addWidget(self.c3_lineedit_1)
 
         self.gridLayout.addLayout(self.horizontalLayout_14, 2, 0, 1, 1)
 
         self.horizontalLayout_7 = QHBoxLayout()
         self.horizontalLayout_7.setObjectName("horizontalLayout_7")
-        self.label_8 = QLabel(self.groupBox_3)
+        self.label_8 = QLabel(self.tab_1)
         self.label_8.setObjectName("label_8")
         self.label_8.setMaximumSize(QSize(30, 16777215))
 
         self.horizontalLayout_7.addWidget(self.label_8)
 
-        self.c1_lineedit = QLineEdit(self.groupBox_3)
-        self.c1_lineedit.setObjectName("c1_lineedit")
-        self.c1_lineedit.setMaximumSize(QSize(250, 16777215))
-        self.c1_lineedit.setReadOnly(True)
+        self.c1_lineedit_1 = QLineEdit(self.tab_1)
+        self.c1_lineedit_1.setObjectName("c1_lineedit_1")
+        self.c1_lineedit_1.setMaximumSize(QSize(250, 16777215))
+        self.c1_lineedit_1.setReadOnly(True)
 
-        self.horizontalLayout_7.addWidget(self.c1_lineedit)
+        self.horizontalLayout_7.addWidget(self.c1_lineedit_1)
 
         self.gridLayout.addLayout(self.horizontalLayout_7, 0, 0, 1, 1)
 
         self.horizontalLayout_13 = QHBoxLayout()
         self.horizontalLayout_13.setObjectName("horizontalLayout_13")
-        self.label_15 = QLabel(self.groupBox_3)
+        self.label_15 = QLabel(self.tab_1)
         self.label_15.setObjectName("label_15")
         self.label_15.setMaximumSize(QSize(30, 16777215))
 
         self.horizontalLayout_13.addWidget(self.label_15)
 
-        self.c2_lineedit = QLineEdit(self.groupBox_3)
-        self.c2_lineedit.setObjectName("c2_lineedit")
-        self.c2_lineedit.setMaximumSize(QSize(250, 16777215))
-        self.c2_lineedit.setReadOnly(True)
+        self.c2_lineedit_1 = QLineEdit(self.tab_1)
+        self.c2_lineedit_1.setObjectName("c2_lineedit_1")
+        self.c2_lineedit_1.setMaximumSize(QSize(250, 16777215))
+        self.c2_lineedit_1.setReadOnly(True)
 
-        self.horizontalLayout_13.addWidget(self.c2_lineedit)
+        self.horizontalLayout_13.addWidget(self.c2_lineedit_1)
 
         self.gridLayout.addLayout(self.horizontalLayout_13, 1, 0, 1, 1)
 
         self.horizontalLayout_17 = QHBoxLayout()
         self.horizontalLayout_17.setObjectName("horizontalLayout_17")
-        self.label_19 = QLabel(self.groupBox_3)
+        self.label_19 = QLabel(self.tab_1)
         self.label_19.setObjectName("label_19")
         self.label_19.setMaximumSize(QSize(30, 16777215))
 
         self.horizontalLayout_17.addWidget(self.label_19)
 
-        self.a3_lineedit = QLineEdit(self.groupBox_3)
-        self.a3_lineedit.setObjectName("a3_lineedit")
-        self.a3_lineedit.setMaximumSize(QSize(250, 16777215))
-        self.a3_lineedit.setReadOnly(True)
+        self.a3_lineedit_1 = QLineEdit(self.tab_1)
+        self.a3_lineedit_1.setObjectName("a3_lineedit_1")
+        self.a3_lineedit_1.setMaximumSize(QSize(250, 16777215))
+        self.a3_lineedit_1.setReadOnly(True)
 
-        self.horizontalLayout_17.addWidget(self.a3_lineedit)
+        self.horizontalLayout_17.addWidget(self.a3_lineedit_1)
 
         self.gridLayout.addLayout(self.horizontalLayout_17, 2, 1, 1, 1)
 
         self.horizontalLayout_16 = QHBoxLayout()
         self.horizontalLayout_16.setObjectName("horizontalLayout_16")
-        self.label_18 = QLabel(self.groupBox_3)
+        self.label_18 = QLabel(self.tab_1)
         self.label_18.setObjectName("label_18")
         self.label_18.setMaximumSize(QSize(30, 16777215))
 
         self.horizontalLayout_16.addWidget(self.label_18)
 
-        self.a2_lineedit = QLineEdit(self.groupBox_3)
-        self.a2_lineedit.setObjectName("a2_lineedit")
-        self.a2_lineedit.setMaximumSize(QSize(250, 16777215))
-        self.a2_lineedit.setReadOnly(True)
+        self.a2_lineedit_1 = QLineEdit(self.tab_1)
+        self.a2_lineedit_1.setObjectName("a2_lineedit_1")
+        self.a2_lineedit_1.setMaximumSize(QSize(250, 16777215))
+        self.a2_lineedit_1.setReadOnly(True)
 
-        self.horizontalLayout_16.addWidget(self.a2_lineedit)
+        self.horizontalLayout_16.addWidget(self.a2_lineedit_1)
 
         self.gridLayout.addLayout(self.horizontalLayout_16, 1, 1, 1, 1)
 
         self.horizontalLayout_15 = QHBoxLayout()
         self.horizontalLayout_15.setObjectName("horizontalLayout_15")
-        self.label_17 = QLabel(self.groupBox_3)
+        self.label_17 = QLabel(self.tab_1)
         self.label_17.setObjectName("label_17")
         self.label_17.setMaximumSize(QSize(30, 16777215))
 
         self.horizontalLayout_15.addWidget(self.label_17)
 
-        self.a1_lineedit = QLineEdit(self.groupBox_3)
-        self.a1_lineedit.setObjectName("a1_lineedit")
-        self.a1_lineedit.setMaximumSize(QSize(250, 16777215))
-        self.a1_lineedit.setReadOnly(True)
+        self.a1_lineedit_1 = QLineEdit(self.tab_1)
+        self.a1_lineedit_1.setObjectName("a1_lineedit_1")
+        self.a1_lineedit_1.setMaximumSize(QSize(250, 16777215))
+        self.a1_lineedit_1.setReadOnly(True)
 
-        self.horizontalLayout_15.addWidget(self.a1_lineedit)
+        self.horizontalLayout_15.addWidget(self.a1_lineedit_1)
 
         self.gridLayout.addLayout(self.horizontalLayout_15, 0, 1, 1, 1)
 
-        self.verticalLayout_5.addLayout(self.gridLayout)
+        self.verticalLayout_9.addLayout(self.gridLayout)
 
-        self.compare_pushbutton = QPushButton(self.groupBox_3)
-        self.compare_pushbutton.setObjectName("compare_pushbutton")
-        self.compare_pushbutton.setEnabled(True)
-        self.compare_pushbutton.setAutoDefault(False)
-        self.compare_pushbutton.setFlat(False)
+        self.decomp_tabwidget.addTab(self.tab_1, "")
+        self.tab_2 = QWidget()
+        self.tab_2.setObjectName("tab_2")
+        self.verticalLayout_11 = QVBoxLayout(self.tab_2)
+        self.verticalLayout_11.setObjectName("verticalLayout_11")
+        self.gridLayout_6 = QGridLayout()
+        self.gridLayout_6.setObjectName("gridLayout_6")
+        self.horizontalLayout_22 = QHBoxLayout()
+        self.horizontalLayout_22.setObjectName("horizontalLayout_22")
+        self.label_34 = QLabel(self.tab_2)
+        self.label_34.setObjectName("label_34")
+        self.label_34.setMaximumSize(QSize(30, 16777215))
 
-        self.verticalLayout_5.addWidget(self.compare_pushbutton)
+        self.horizontalLayout_22.addWidget(self.label_34)
+
+        self.a1_lineedit_2 = QLineEdit(self.tab_2)
+        self.a1_lineedit_2.setObjectName("a1_lineedit_2")
+        self.a1_lineedit_2.setMaximumSize(QSize(250, 16777215))
+        self.a1_lineedit_2.setReadOnly(True)
+
+        self.horizontalLayout_22.addWidget(self.a1_lineedit_2)
+
+        self.gridLayout_6.addLayout(self.horizontalLayout_22, 0, 1, 1, 1)
+
+        self.horizontalLayout_18 = QHBoxLayout()
+        self.horizontalLayout_18.setObjectName("horizontalLayout_18")
+        self.label_29 = QLabel(self.tab_2)
+        self.label_29.setObjectName("label_29")
+        self.label_29.setMaximumSize(QSize(30, 16777215))
+
+        self.horizontalLayout_18.addWidget(self.label_29)
+
+        self.c3_lineedit_2 = QLineEdit(self.tab_2)
+        self.c3_lineedit_2.setObjectName("c3_lineedit_2")
+        self.c3_lineedit_2.setMaximumSize(QSize(250, 16777215))
+        self.c3_lineedit_2.setReadOnly(True)
+
+        self.horizontalLayout_18.addWidget(self.c3_lineedit_2)
+
+        self.gridLayout_6.addLayout(self.horizontalLayout_18, 2, 0, 1, 1)
+
+        self.horizontalLayout_9 = QHBoxLayout()
+        self.horizontalLayout_9.setObjectName("horizontalLayout_9")
+        self.label_30 = QLabel(self.tab_2)
+        self.label_30.setObjectName("label_30")
+        self.label_30.setMaximumSize(QSize(30, 16777215))
+
+        self.horizontalLayout_9.addWidget(self.label_30)
+
+        self.c1_lineedit_2 = QLineEdit(self.tab_2)
+        self.c1_lineedit_2.setObjectName("c1_lineedit_2")
+        self.c1_lineedit_2.setMaximumSize(QSize(250, 16777215))
+        self.c1_lineedit_2.setReadOnly(True)
+
+        self.horizontalLayout_9.addWidget(self.c1_lineedit_2)
+
+        self.gridLayout_6.addLayout(self.horizontalLayout_9, 0, 0, 1, 1)
+
+        self.horizontalLayout_21 = QHBoxLayout()
+        self.horizontalLayout_21.setObjectName("horizontalLayout_21")
+        self.label_33 = QLabel(self.tab_2)
+        self.label_33.setObjectName("label_33")
+        self.label_33.setMaximumSize(QSize(30, 16777215))
+
+        self.horizontalLayout_21.addWidget(self.label_33)
+
+        self.a2_lineedit_2 = QLineEdit(self.tab_2)
+        self.a2_lineedit_2.setObjectName("a2_lineedit_2")
+        self.a2_lineedit_2.setMaximumSize(QSize(250, 16777215))
+        self.a2_lineedit_2.setReadOnly(True)
+
+        self.horizontalLayout_21.addWidget(self.a2_lineedit_2)
+
+        self.gridLayout_6.addLayout(self.horizontalLayout_21, 1, 1, 1, 1)
+
+        self.horizontalLayout_19 = QHBoxLayout()
+        self.horizontalLayout_19.setObjectName("horizontalLayout_19")
+        self.label_31 = QLabel(self.tab_2)
+        self.label_31.setObjectName("label_31")
+        self.label_31.setMaximumSize(QSize(30, 16777215))
+
+        self.horizontalLayout_19.addWidget(self.label_31)
+
+        self.c2_lineedit_2 = QLineEdit(self.tab_2)
+        self.c2_lineedit_2.setObjectName("c2_lineedit_2")
+        self.c2_lineedit_2.setMaximumSize(QSize(250, 16777215))
+        self.c2_lineedit_2.setReadOnly(True)
+
+        self.horizontalLayout_19.addWidget(self.c2_lineedit_2)
+
+        self.gridLayout_6.addLayout(self.horizontalLayout_19, 1, 0, 1, 1)
+
+        self.horizontalLayout_20 = QHBoxLayout()
+        self.horizontalLayout_20.setObjectName("horizontalLayout_20")
+        self.label_32 = QLabel(self.tab_2)
+        self.label_32.setObjectName("label_32")
+        self.label_32.setMaximumSize(QSize(30, 16777215))
+
+        self.horizontalLayout_20.addWidget(self.label_32)
+
+        self.a3_lineedit_2 = QLineEdit(self.tab_2)
+        self.a3_lineedit_2.setObjectName("a3_lineedit_2")
+        self.a3_lineedit_2.setMaximumSize(QSize(250, 16777215))
+        self.a3_lineedit_2.setReadOnly(True)
+
+        self.horizontalLayout_20.addWidget(self.a3_lineedit_2)
+
+        self.gridLayout_6.addLayout(self.horizontalLayout_20, 2, 1, 1, 1)
+
+        self.verticalLayout_11.addLayout(self.gridLayout_6)
+
+        self.decomp_tabwidget.addTab(self.tab_2, "")
+
+        self.verticalLayout_5.addWidget(self.decomp_tabwidget)
 
         self.verticalLayout_8.addWidget(self.groupBox_3)
 
@@ -376,86 +506,158 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_7.addWidget(self.label_25)
 
-        self.verticalSpacer_5 = QSpacerItem(
-            20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding
-        )
-
-        self.verticalLayout_7.addItem(self.verticalSpacer_5)
-
+        self.metrics_tabwidget = QTabWidget(self.groupBox_4)
+        self.metrics_tabwidget.setObjectName("metrics_tabwidget")
+        self.metrics_tab_1 = QWidget()
+        self.metrics_tab_1.setObjectName("metrics_tab_1")
+        self.verticalLayout_12 = QVBoxLayout(self.metrics_tab_1)
+        self.verticalLayout_12.setObjectName("verticalLayout_12")
         self.gridLayout_2 = QGridLayout()
         self.gridLayout_2.setObjectName("gridLayout_2")
-        self.label_20 = QLabel(self.groupBox_4)
+        self.label_20 = QLabel(self.metrics_tab_1)
         self.label_20.setObjectName("label_20")
         self.label_20.setMaximumSize(QSize(75, 16777215))
 
         self.gridLayout_2.addWidget(self.label_20, 0, 0, 1, 1)
 
-        self.mse_lineedit = QLineEdit(self.groupBox_4)
-        self.mse_lineedit.setObjectName("mse_lineedit")
-        self.mse_lineedit.setMaximumSize(QSize(250, 16777215))
-        self.mse_lineedit.setReadOnly(True)
+        self.mse_lineedit_1 = QLineEdit(self.metrics_tab_1)
+        self.mse_lineedit_1.setObjectName("mse_lineedit_1")
+        self.mse_lineedit_1.setMaximumSize(QSize(250, 16777215))
+        self.mse_lineedit_1.setReadOnly(True)
 
-        self.gridLayout_2.addWidget(self.mse_lineedit, 0, 1, 1, 1)
+        self.gridLayout_2.addWidget(self.mse_lineedit_1, 0, 1, 1, 1)
 
-        self.label_21 = QLabel(self.groupBox_4)
+        self.label_21 = QLabel(self.metrics_tab_1)
         self.label_21.setObjectName("label_21")
         self.label_21.setMaximumSize(QSize(75, 16777215))
 
         self.gridLayout_2.addWidget(self.label_21, 1, 0, 1, 1)
 
-        self.mae_lineedit = QLineEdit(self.groupBox_4)
-        self.mae_lineedit.setObjectName("mae_lineedit")
-        self.mae_lineedit.setMaximumSize(QSize(250, 16777215))
-        self.mae_lineedit.setReadOnly(True)
+        self.mae_lineedit_1 = QLineEdit(self.metrics_tab_1)
+        self.mae_lineedit_1.setObjectName("mae_lineedit_1")
+        self.mae_lineedit_1.setMaximumSize(QSize(250, 16777215))
+        self.mae_lineedit_1.setReadOnly(True)
 
-        self.gridLayout_2.addWidget(self.mae_lineedit, 1, 1, 1, 1)
+        self.gridLayout_2.addWidget(self.mae_lineedit_1, 1, 1, 1, 1)
 
-        self.label_22 = QLabel(self.groupBox_4)
+        self.label_22 = QLabel(self.metrics_tab_1)
         self.label_22.setObjectName("label_22")
         self.label_22.setMaximumSize(QSize(75, 16777215))
 
         self.gridLayout_2.addWidget(self.label_22, 2, 0, 1, 1)
 
-        self.mape_lineedit = QLineEdit(self.groupBox_4)
-        self.mape_lineedit.setObjectName("mape_lineedit")
-        self.mape_lineedit.setMaximumSize(QSize(250, 16777215))
-        self.mape_lineedit.setReadOnly(True)
+        self.mape_lineedit_1 = QLineEdit(self.metrics_tab_1)
+        self.mape_lineedit_1.setObjectName("mape_lineedit_1")
+        self.mape_lineedit_1.setMaximumSize(QSize(250, 16777215))
+        self.mape_lineedit_1.setReadOnly(True)
 
-        self.gridLayout_2.addWidget(self.mape_lineedit, 2, 1, 1, 1)
+        self.gridLayout_2.addWidget(self.mape_lineedit_1, 2, 1, 1, 1)
 
-        self.label_23 = QLabel(self.groupBox_4)
+        self.label_23 = QLabel(self.metrics_tab_1)
         self.label_23.setObjectName("label_23")
         self.label_23.setMaximumSize(QSize(75, 16777215))
 
         self.gridLayout_2.addWidget(self.label_23, 3, 0, 1, 1)
 
-        self.mdae_linedit = QLineEdit(self.groupBox_4)
-        self.mdae_linedit.setObjectName("mdae_linedit")
-        self.mdae_linedit.setMaximumSize(QSize(250, 16777215))
-        self.mdae_linedit.setReadOnly(True)
+        self.mdae_linedit_1 = QLineEdit(self.metrics_tab_1)
+        self.mdae_linedit_1.setObjectName("mdae_linedit_1")
+        self.mdae_linedit_1.setMaximumSize(QSize(250, 16777215))
+        self.mdae_linedit_1.setReadOnly(True)
 
-        self.gridLayout_2.addWidget(self.mdae_linedit, 3, 1, 1, 1)
+        self.gridLayout_2.addWidget(self.mdae_linedit_1, 3, 1, 1, 1)
 
-        self.label_24 = QLabel(self.groupBox_4)
+        self.label_24 = QLabel(self.metrics_tab_1)
         self.label_24.setObjectName("label_24")
         self.label_24.setMaximumSize(QSize(75, 16777215))
 
         self.gridLayout_2.addWidget(self.label_24, 4, 0, 1, 1)
 
-        self.r2_lineedit = QLineEdit(self.groupBox_4)
-        self.r2_lineedit.setObjectName("r2_lineedit")
-        self.r2_lineedit.setMaximumSize(QSize(250, 16777215))
-        self.r2_lineedit.setReadOnly(True)
+        self.r2_lineedit_1 = QLineEdit(self.metrics_tab_1)
+        self.r2_lineedit_1.setObjectName("r2_lineedit_1")
+        self.r2_lineedit_1.setMaximumSize(QSize(250, 16777215))
+        self.r2_lineedit_1.setReadOnly(True)
 
-        self.gridLayout_2.addWidget(self.r2_lineedit, 4, 1, 1, 1)
+        self.gridLayout_2.addWidget(self.r2_lineedit_1, 4, 1, 1, 1)
 
-        self.verticalLayout_7.addLayout(self.gridLayout_2)
+        self.verticalLayout_12.addLayout(self.gridLayout_2)
 
-        self.verticalSpacer_6 = QSpacerItem(
-            20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding
-        )
+        self.metrics_tabwidget.addTab(self.metrics_tab_1, "")
+        self.metrics_tab_2 = QWidget()
+        self.metrics_tab_2.setObjectName("metrics_tab_2")
+        self.verticalLayout_13 = QVBoxLayout(self.metrics_tab_2)
+        self.verticalLayout_13.setObjectName("verticalLayout_13")
+        self.gridLayout_7 = QGridLayout()
+        self.gridLayout_7.setObjectName("gridLayout_7")
+        self.label_35 = QLabel(self.metrics_tab_2)
+        self.label_35.setObjectName("label_35")
+        self.label_35.setMaximumSize(QSize(75, 16777215))
 
-        self.verticalLayout_7.addItem(self.verticalSpacer_6)
+        self.gridLayout_7.addWidget(self.label_35, 0, 0, 1, 1)
+
+        self.mse_lineedit_2 = QLineEdit(self.metrics_tab_2)
+        self.mse_lineedit_2.setObjectName("mse_lineedit_2")
+        self.mse_lineedit_2.setMaximumSize(QSize(250, 16777215))
+        self.mse_lineedit_2.setReadOnly(True)
+
+        self.gridLayout_7.addWidget(self.mse_lineedit_2, 0, 1, 1, 1)
+
+        self.label_36 = QLabel(self.metrics_tab_2)
+        self.label_36.setObjectName("label_36")
+        self.label_36.setMaximumSize(QSize(75, 16777215))
+
+        self.gridLayout_7.addWidget(self.label_36, 1, 0, 1, 1)
+
+        self.mae_lineedit_2 = QLineEdit(self.metrics_tab_2)
+        self.mae_lineedit_2.setObjectName("mae_lineedit_2")
+        self.mae_lineedit_2.setMaximumSize(QSize(250, 16777215))
+        self.mae_lineedit_2.setReadOnly(True)
+
+        self.gridLayout_7.addWidget(self.mae_lineedit_2, 1, 1, 1, 1)
+
+        self.label_37 = QLabel(self.metrics_tab_2)
+        self.label_37.setObjectName("label_37")
+        self.label_37.setMaximumSize(QSize(75, 16777215))
+
+        self.gridLayout_7.addWidget(self.label_37, 2, 0, 1, 1)
+
+        self.mape_lineedit_2 = QLineEdit(self.metrics_tab_2)
+        self.mape_lineedit_2.setObjectName("mape_lineedit_2")
+        self.mape_lineedit_2.setMaximumSize(QSize(250, 16777215))
+        self.mape_lineedit_2.setReadOnly(True)
+
+        self.gridLayout_7.addWidget(self.mape_lineedit_2, 2, 1, 1, 1)
+
+        self.label_38 = QLabel(self.metrics_tab_2)
+        self.label_38.setObjectName("label_38")
+        self.label_38.setMaximumSize(QSize(75, 16777215))
+
+        self.gridLayout_7.addWidget(self.label_38, 3, 0, 1, 1)
+
+        self.mdae_linedit_2 = QLineEdit(self.metrics_tab_2)
+        self.mdae_linedit_2.setObjectName("mdae_linedit_2")
+        self.mdae_linedit_2.setMaximumSize(QSize(250, 16777215))
+        self.mdae_linedit_2.setReadOnly(True)
+
+        self.gridLayout_7.addWidget(self.mdae_linedit_2, 3, 1, 1, 1)
+
+        self.label_39 = QLabel(self.metrics_tab_2)
+        self.label_39.setObjectName("label_39")
+        self.label_39.setMaximumSize(QSize(75, 16777215))
+
+        self.gridLayout_7.addWidget(self.label_39, 4, 0, 1, 1)
+
+        self.r2_lineedit_2 = QLineEdit(self.metrics_tab_2)
+        self.r2_lineedit_2.setObjectName("r2_lineedit_2")
+        self.r2_lineedit_2.setMaximumSize(QSize(250, 16777215))
+        self.r2_lineedit_2.setReadOnly(True)
+
+        self.gridLayout_7.addWidget(self.r2_lineedit_2, 4, 1, 1, 1)
+
+        self.verticalLayout_13.addLayout(self.gridLayout_7)
+
+        self.metrics_tabwidget.addTab(self.metrics_tab_2, "")
+
+        self.verticalLayout_7.addWidget(self.metrics_tabwidget)
 
         self.horizontalLayout_8.addWidget(self.groupBox_4)
 
@@ -661,22 +863,6 @@ class Ui_MainWindow(object):
 
         self.gridLayout_5.addWidget(self.groupBox_7, 2, 1, 1, 1)
 
-        self.canvas_frame = QFrame(self.centralwidget)
-        self.canvas_frame.setObjectName("canvas_frame")
-        sizePolicy1 = QSizePolicy(
-            QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding
-        )
-        sizePolicy1.setHorizontalStretch(0)
-        sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(
-            self.canvas_frame.sizePolicy().hasHeightForWidth()
-        )
-        self.canvas_frame.setSizePolicy(sizePolicy1)
-        self.canvas_frame.setFrameShape(QFrame.Shape.StyledPanel)
-        self.canvas_frame.setFrameShadow(QFrame.Shadow.Raised)
-
-        self.gridLayout_5.addWidget(self.canvas_frame, 1, 1, 1, 1)
-
         # new layout
         self.verticalLayout_11 = QVBoxLayout(self.canvas_frame)
         self.verticalLayout_11.setObjectName("verticalLayout_11")
@@ -702,7 +888,8 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.compare_pushbutton.setDefault(False)
+        self.decomp_tabwidget.setCurrentIndex(0)
+        self.metrics_tabwidget.setCurrentIndex(0)
 
         QMetaObject.connectSlotsByName(MainWindow)
 
@@ -773,7 +960,7 @@ class Ui_MainWindow(object):
         )
         self.to_points_lineedit.setText("")
         self.groupBox.setTitle("")
-        self.show_files_pushbutton.setText(
+        self.data_view_pushbutton.setText(
             QCoreApplication.translate(
                 "MainWindow",
                 "\u041f\u0440\u043e\u0441\u043c\u043e\u0442\u0440 \u0434\u0430\u043d\u043d\u044b\u0445",  # noqa: E501
@@ -801,7 +988,7 @@ class Ui_MainWindow(object):
         self.label_7.setText(
             QCoreApplication.translate(
                 "MainWindow",
-                "\u0420\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442\u044b \u0440\u0430\u0437\u043b\u043e\u0436\u0435\u043d\u0438\u044f",  # noqa: E501
+                "\u0420\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442\u044b \u0440\u0430\u0437\u043b\u043e\u0436\u0435\u043d\u0438\u044f:",  # noqa: E501
                 None,
             )
         )
@@ -823,18 +1010,41 @@ class Ui_MainWindow(object):
         self.label_17.setText(
             QCoreApplication.translate("MainWindow", "A1", None)
         )
-        self.compare_pushbutton.setText(
+        self.decomp_tabwidget.setTabText(
+            self.decomp_tabwidget.indexOf(self.tab_1),
             QCoreApplication.translate(
-                "MainWindow",
-                "\u0421\u0440\u0430\u0432\u043d\u0435\u043d\u0438\u0435 \u0433\u0440\u0430\u0444\u0438\u043a\u043e\u0432",  # noqa: E501
-                None,
-            )
+                "MainWindow", "\u0413\u0440\u0430\u0444\u0438\u043a 1", None
+            ),
+        )
+        self.label_34.setText(
+            QCoreApplication.translate("MainWindow", "A1", None)
+        )
+        self.label_29.setText(
+            QCoreApplication.translate("MainWindow", "C3", None)
+        )
+        self.label_30.setText(
+            QCoreApplication.translate("MainWindow", "C1", None)
+        )
+        self.label_33.setText(
+            QCoreApplication.translate("MainWindow", "A2", None)
+        )
+        self.label_31.setText(
+            QCoreApplication.translate("MainWindow", "C2", None)
+        )
+        self.label_32.setText(
+            QCoreApplication.translate("MainWindow", "A3", None)
+        )
+        self.decomp_tabwidget.setTabText(
+            self.decomp_tabwidget.indexOf(self.tab_2),
+            QCoreApplication.translate(
+                "MainWindow", "\u0413\u0440\u0430\u0444\u0438\u043a 2", None
+            ),
         )
         self.groupBox_4.setTitle("")
         self.label_25.setText(
             QCoreApplication.translate(
                 "MainWindow",
-                "\u041e\u0446\u0435\u043d\u043a\u0430 \u0440\u0430\u0437\u043b\u043e\u0436\u0435\u043d\u0438\u044f",  # noqa: E501
+                "\u041e\u0446\u0435\u043d\u043a\u0430 \u0440\u0430\u0437\u043b\u043e\u0436\u0435\u043d\u0438\u044f:",  # noqa: E501
                 None,
             )
         )
@@ -853,11 +1063,38 @@ class Ui_MainWindow(object):
         self.label_24.setText(
             QCoreApplication.translate("MainWindow", "R2 Score", None)
         )
+        self.metrics_tabwidget.setTabText(
+            self.metrics_tabwidget.indexOf(self.metrics_tab_1),
+            QCoreApplication.translate(
+                "MainWindow", "\u0413\u0440\u0430\u0444\u0438\u043a 1", None
+            ),
+        )
+        self.label_35.setText(
+            QCoreApplication.translate("MainWindow", "MSE", None)
+        )
+        self.label_36.setText(
+            QCoreApplication.translate("MainWindow", "MAE", None)
+        )
+        self.label_37.setText(
+            QCoreApplication.translate("MainWindow", "MAPE", None)
+        )
+        self.label_38.setText(
+            QCoreApplication.translate("MainWindow", "MdAE", None)
+        )
+        self.label_39.setText(
+            QCoreApplication.translate("MainWindow", "R2 Score", None)
+        )
+        self.metrics_tabwidget.setTabText(
+            self.metrics_tabwidget.indexOf(self.metrics_tab_2),
+            QCoreApplication.translate(
+                "MainWindow", "\u0413\u0440\u0430\u0444\u0438\u043a 2", None
+            ),
+        )
         self.groupBox_5.setTitle("")
         self.label_26.setText(
             QCoreApplication.translate(
                 "MainWindow",
-                "\u041a\u0440\u0438\u0442\u0435\u0440\u0438\u0439 \u043e\u0431\u043d\u0430\u0440\u0443\u0436\u0435\u043d\u0438\u044f \u0434\u0435\u0444\u0435\u043a\u0442\u0430",  # noqa: E501
+                "\u041a\u0440\u0438\u0442\u0435\u0440\u0438\u0439 \u043e\u0431\u043d\u0430\u0440\u0443\u0436\u0435\u043d\u0438\u044f \u0434\u0435\u0444\u0435\u043a\u0442\u0430:",  # noqa: E501
                 None,
             )
         )
@@ -875,7 +1112,7 @@ class Ui_MainWindow(object):
         self.label_9.setText(
             QCoreApplication.translate(
                 "MainWindow",
-                "\u041f\u0430\u0441\u043f\u043e\u0440\u0442\u043d\u044b\u0435 \u0434\u0430\u043d\u043d\u044b\u0435",  # noqa: E501
+                "\u041f\u0430\u0441\u043f\u043e\u0440\u0442\u043d\u044b\u0435 \u0434\u0430\u043d\u043d\u044b\u0435:",  # noqa: E501
                 None,
             )
         )
