@@ -101,10 +101,10 @@ class TrasformatorDesomposer(QMainWindow):
         self._update_passport_ui()
 
     def _init_data(self):
-        self.dHandler = service.DataHandler()
+        """Инициализация переменных."""
+        self.datasets: dict[str, service.DataSet] = {}
         self._source_params = SourceParams()
         self._passport_params = PassportParams()
-        self._ranges = None
 
     def _connect_handlers(self):
         self.ui.select_files_pushbutton.clicked.connect(
