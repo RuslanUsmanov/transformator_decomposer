@@ -14,7 +14,7 @@ from matplotlib.backends.backend_qtagg import (
 )
 from matplotlib.figure import Figure
 from PySide6.QtCore import QCoreApplication, QMetaObject, QRect, QSize, Qt
-from PySide6.QtGui import QAction, QFont
+from PySide6.QtGui import QAction, QFont, QIntValidator
 from PySide6.QtWidgets import (
     QFrame,
     QGridLayout,
@@ -50,6 +50,9 @@ class Ui_MainWindow(object):
         font = QFont()
         font.setPointSize(12)
         MainWindow.setFont(font)
+
+        self.only_int = QIntValidator()
+
         self.source_params_action = QAction(MainWindow)
         self.source_params_action.setObjectName("source_params_action")
         self.source_params_action.setFont(font)
@@ -151,6 +154,9 @@ class Ui_MainWindow(object):
         self.to_points_lineedit.setMaximumSize(QSize(150, 16777215))
 
         self.horizontalLayout_2.addWidget(self.to_points_lineedit)
+
+        self.from_points_lineedit.setValidator(self.only_int)
+        self.to_points_lineedit.setValidator(self.only_int)
 
         self.horizontalSpacer_12 = QSpacerItem(
             40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum
