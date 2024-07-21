@@ -41,23 +41,31 @@ class TrasformatorDesomposer(QMainWindow):
         self.dHandler = service.DataHandler()
         self._source_params = SourceParams()
         self._passport_params = PassportParams()
+        self._ranges = None
 
     def _connect_handlers(self):
         self.ui.select_files_pushbutton.clicked.connect(
-            self.open_select_files_dialog
+            self.open_select_files_dialog,
         )
         self.ui.source_params_action.triggered.connect(
-            self._show_source_settings_window
+            self._show_source_settings_window,
         )
         self.ui.passport_params_action.triggered.connect(
-            self._show_passport_settings_window
+            self._show_passport_settings_window,
+        )
+        self.ui.constr_radiobutton.clicked.connect(
+            self._toggle_ranges
+        )
+        self.ui.no_constr_radiobutton.clicked.connect(
+            self._toggle_ranges
         )
 
+        # Dialog windows
         self.passport_params_window.accepted.connect(
-            self._update_passport_params
+            self._update_passport_params,
         )
         self.source_params_window.accepted.connect(
-            self._update_source_params
+            self._update_source_params,
         )
 
     def open_select_files_dialog(self):
@@ -167,8 +175,18 @@ class TrasformatorDesomposer(QMainWindow):
     def _show_passport_settings_window(self):
         self.passport_params_window.show()
 
+    def _toggle_ranges(self):
+        if self.ui.constr_radiobutton.isChecked():
+            self.ui.from_points_lineedit.setDisabled(False)
+            self.ui.to_points_lineedit.setDisabled(False)
+        if self.ui.no_constr_radiobutton.isChecked():
+            self.ui.from_points_lineedit.setDisabled(True)
+            self.ui.to_points_lineedit.setDisabled(True)
+            self.ui.from_points_lineedit.setText("")
+            self.ui.to_points_lineedit.setText("")
 
-if __name__ == "__main__":
+
+if __name__ == '__main__':
     app = QApplication(sys.argv)
     window = TrasformatorDesomposer()
     window.show()
