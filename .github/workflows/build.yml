@@ -35,14 +35,14 @@ jobs:
 
     - name: Build Executable pyinstaller
       run: |
-        pyinstaller main.py -F -n transformator
+        pyinstaller main.py -F -n transformator-linux
 
     - name: Upload Artifacts
       uses: actions/upload-artifact@v4
       with:
         name: build_ubuntu
-        path: | # match what's created for the 3 OSes
-            dist/transformator-linux.bin
+        path: |
+            dist/transformator-linux
 
   build-windows:
     runs-on: windows-latest
@@ -68,13 +68,13 @@ jobs:
 
     - name: Build Executable pyinstaller
       run: |
-        pyinstaller main.py -F --hide-console hide-early -n transformator
+        pyinstaller main.py -F --hide-console hide-early -n transformator-windows
 
     - name: Upload Artifacts
       uses: actions/upload-artifact@v4
       with:
         name: build_windows
-        path: | # match what's created for the 3 OSes
+        path: |
             dist/transformator-windows.exe
 
   release:
