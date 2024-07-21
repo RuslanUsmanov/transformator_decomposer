@@ -1017,22 +1017,22 @@ class Ui_MainWindow(object):
             ),
         )
         self.label_34.setText(
-            QCoreApplication.translate("MainWindow", "A1", None)
+            QCoreApplication.translate("MainWindow", "A4", None)
         )
         self.label_29.setText(
-            QCoreApplication.translate("MainWindow", "C3", None)
+            QCoreApplication.translate("MainWindow", "C6", None)
         )
         self.label_30.setText(
-            QCoreApplication.translate("MainWindow", "C1", None)
+            QCoreApplication.translate("MainWindow", "C4", None)
         )
         self.label_33.setText(
-            QCoreApplication.translate("MainWindow", "A2", None)
+            QCoreApplication.translate("MainWindow", "A5", None)
         )
         self.label_31.setText(
-            QCoreApplication.translate("MainWindow", "C2", None)
+            QCoreApplication.translate("MainWindow", "C5", None)
         )
         self.label_32.setText(
-            QCoreApplication.translate("MainWindow", "A3", None)
+            QCoreApplication.translate("MainWindow", "A6", None)
         )
         self.decomp_tabwidget.setTabText(
             self.decomp_tabwidget.indexOf(self.tab_2),
