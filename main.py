@@ -101,27 +101,20 @@ class TrasformatorDesomposer(QMainWindow):
         self._update_passport_ui()
 
     def _init_data(self):
-        self.dHandler = service.DataHandler()
+        """Инициализация переменных."""
+        self.datasets: dict[str, service.DataSet] = {}
         self._source_params = SourceParams()
         self._passport_params = PassportParams()
-        self._ranges = None
 
     def _connect_handlers(self):
-        """Подключение обработчиков к кнопкам и т.д."""
         self.ui.select_files_pushbutton.clicked.connect(
-            self._open_select_files_dialog,
+            self.open_select_files_dialog,
         )
         self.ui.source_params_action.triggered.connect(
-            self.source_params_window.show,
+            self._show_source_settings_window,
         )
         self.ui.passport_params_action.triggered.connect(
-            self.passport_params_window.show,
-        )
-        self.ui.data_view_pushbutton.clicked.connect(
-            self.data_view_window.show,
-        )
-        self.ui.calculate_pushbutton.clicked.connect(
-            self.data_select_window.show
+            self._show_passport_settings_window,
         )
         self.ui.constr_radiobutton.clicked.connect(
             self._toggle_ranges
@@ -137,12 +130,10 @@ class TrasformatorDesomposer(QMainWindow):
         self.source_params_window.accepted.connect(
             self._update_source_params,
         )
-        self.data_select_window.accepted.connect(
-            self._calculate_all
-        )
 
-    def open_select_files_dialog(self):
-        filenames, _ = QFileDialog.getOpenFileName(
+    def _open_select_files_dialog(self):
+        """Получает список файлов и выполняет их преобразование в DataFrame."""
+        filenames, _ = QFileDialog.getOpenFileNames(
             self,
             caption="Выберите файлы",
             filter="Файл данных (*.txt *.csv)",
@@ -154,7 +145,7 @@ class TrasformatorDesomposer(QMainWindow):
         QGuiApplication.setOverrideCursor(Qt.WaitCursor)
 
         try:
-            self.dHandler.read_from_file(filenames)
+            self.datasets = service.read_data_from_files(filenames)
         except Exception as ex:
             QGuiApplication.restoreOverrideCursor()
             msg_box = QErrorMessage(self)
@@ -162,15 +153,11 @@ class TrasformatorDesomposer(QMainWindow):
             msg_box.showMessage(f"Ошибка во время чтения файла:\n{repr(ex)}")
             return
 
-        self.ui.current_start_lineedit.setText(
-            f"{float(self.dHandler.data["dataset"][0]):.6f}"
-        )
-        popt = self.dHandler.get_coefficients()
-        mertics = self.dHandler.get_metrics(popt)
-        self._update_coeffs_ui(popt)
-        self._update_metrics_ui(mertics)
-        self._draw_plot()
-
+        self._update_data_view_tables()
+        self._update_data_select_checkboxes()
+        self._draw_plots_after_load()
+        self.ui.data_view_pushbutton.setEnabled(True)
+        self.ui.calculate_pushbutton.setEnabled(True)
         QGuiApplication.restoreOverrideCursor()
 
     def _update_coeffs_ui(self, popt):
