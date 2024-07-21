@@ -1,40 +1,69 @@
+import os
+
 import numpy as np
 import pandas as pd
 
 from core.decompose import get_coefficients, get_metrics
+from core.parameters import SourceParams
 
 
-class DataHandler:
+class DataSet:
     def __init__(self):
-        self.__data = None
-        self.R = 352.8
+        self.__dataset = None
+        self.dataset_scaled = None
+
+    def __len__(self):
+        return len(self.__dataset)
 
     @property
-    def data(self):
-        return self.__data
+    def dataset(self):
+        return self.__dataset
 
-    @data.setter
-    def data(self, data: pd.DataFrame):
-        self.__data = data
-        self.__data.set_index("time", inplace=True)
-        self.__data["dataset"] = (
-            self.__data["dataset"] - self.__data.min(axis=0)["dataset"]
+    @dataset.setter
+    def dataset(self, data: pd.DataFrame):
+        self.__dataset = data
+        self.__dataset["dataset"] = (
+            self.__dataset["dataset"] - self.__dataset.min(axis=0)["dataset"]
         )
 
-        self.__data = self.__data * (2000 / self.R)
+    def scale_dataset(
+        self,
+        params: SourceParams,
+        from_points: int = None,
+        to_points: int = None,
+    ):
+        if not from_points or not to_points:
+            from_points = 0
+            to_points = len(self.__dataset)
+        self.dataset_scaled = self.__dataset.iloc[from_points:to_points] * (
+            params.K_u / params.R_meas
+        )
 
-    def read_from_file(self, filename):
-        self.data = pd.read_csv(
+    def get_coefficients(self):
+        return get_coefficients(
+            t=self.dataset_scaled["time"],
+            y=self.dataset_scaled["dataset"],
+        )
+
+    def get_metrics(self, popt):
+        return get_metrics(
+            t=self.dataset_scaled["time"],
+            y=self.dataset_scaled["dataset"],
+            popt=popt,
+        )
+
+
+def read_data_from_files(filenames: list[str]) -> dict[str, DataSet]:
+    datasets = {}
+    for filename in filenames:
+        data = pd.read_csv(
             filename,
             sep=r"\s+",
             names=["time", "dataset"],
             dtype={"time": np.float64, "dataset": np.float64},
         )
-
-    def get_coefficients(self):
-        return get_coefficients(t=self.__data.index, y=self.__data["dataset"])
-
-    def get_metrics(self, popt):
-        return get_metrics(
-            t=self.__data.index, y=self.__data["dataset"], popt=popt
-        )
+        dataset = DataSet()
+        dataset.dataset = data
+        filename_bare = os.path.basename(filename).split(".")[0]
+        datasets[filename_bare] = dataset
+    return datasets
