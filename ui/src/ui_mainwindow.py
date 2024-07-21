@@ -193,7 +193,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_6.setObjectName("horizontalLayout_6")
         self.data_view_pushbutton = QPushButton(self.groupBox)
         self.data_view_pushbutton.setObjectName("data_view_pushbutton")
-        self.data_view_pushbutton.setEnabled(True)
+        self.data_view_pushbutton.setEnabled(False)
 
         self.horizontalLayout_6.addWidget(self.data_view_pushbutton)
 
@@ -205,7 +205,7 @@ class Ui_MainWindow(object):
 
         self.calculate_pushbutton = QPushButton(self.groupBox)
         self.calculate_pushbutton.setObjectName("calculate_pushbutton")
-        self.calculate_pushbutton.setEnabled(True)
+        self.calculate_pushbutton.setEnabled(False)
 
         self.horizontalLayout_6.addWidget(self.calculate_pushbutton)
 
