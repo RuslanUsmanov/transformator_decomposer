@@ -4,9 +4,9 @@ from dataclasses import dataclass
 @dataclass
 class PassportParams:
     type: str = ""
-    power: float = 0
-    voltage: float = 0
-    phase_num: int = 0
+    power: str = ""
+    voltage: str = ""
+    phase_num: str = ""
     material: str = ""
 
 

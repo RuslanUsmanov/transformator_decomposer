@@ -221,18 +221,14 @@ class TrasformatorDesomposer(QMainWindow):
 
     def _update_passport_ui(self):
         self.ui.passport_type_lineedit.setText(self._passport_params.type)
-        self.ui.passport_p_lineedit.setText(
-            f"{self._passport_params.power:.6f}"
-        )
+        self.ui.passport_p_lineedit.setText(self._passport_params.power)
         self.ui.passport_phase_lineedit.setText(
-            f"{self._passport_params.phase_num}"
+            self._passport_params.phase_num
         )
         self.ui.passport_material_lineedit.setText(
             self._passport_params.material
         )
-        self.ui.passport_u_lineedit.setText(
-            f"{self._passport_params.voltage:.6f}"
-        )
+        self.ui.passport_u_lineedit.setText(self._passport_params.voltage)
 
     def _draw_plots_after_load(self):
         self.ui.mpl_canvas.figure.clear()
@@ -278,13 +274,13 @@ class TrasformatorDesomposer(QMainWindow):
         self._passport_params.material = (
             self.ui_passport.material_lineedit.text()
         )
-        self._passport_params.power = float(
+        self._passport_params.power = (
             self.ui_passport.power_lineedit.text()
         )
-        self._passport_params.phase_num = int(
+        self._passport_params.phase_num = (
             self.ui_passport.num_phases_lineedit.text()
         )
-        self._passport_params.voltage = float(
+        self._passport_params.voltage = (
             self.ui_passport.u_lineedit.text()
         )
 
