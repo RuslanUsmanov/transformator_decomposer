@@ -1,3 +1,4 @@
+import os
 import sys
 from pathlib import Path
 
@@ -21,6 +22,8 @@ from ui.src.ui_drow_select import Ui_Dialog as Ui_DrowSelectDialog
 from ui.src.ui_mainwindow import Ui_MainWindow
 from ui.src.ui_passport_params import Ui_Dialog as Ui_PassportParamsDialog
 from ui.src.ui_source_params import Ui_Dialog as Ui_SourceParamsDialog
+
+basedir = os.path.dirname(__file__)
 
 
 class PandasModel(QAbstractTableModel):
@@ -486,7 +489,9 @@ class TrasformatorDesomposer(QMainWindow):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    app.setWindowIcon(QIcon("ui/resources/logo/app_logo.ico"))
+    app.setWindowIcon(
+        QIcon(os.path.join(basedir, "ui/resources/logo/app_logo.ico"))
+    )
     window = TrasformatorDesomposer()
     window.show()
 

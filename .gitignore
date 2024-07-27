@@ -9,4 +9,3 @@ data/
 jupyter/
 build/
 dist/
-*.spec
