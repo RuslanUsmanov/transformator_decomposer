@@ -9,7 +9,7 @@
 ###############################################################################
 
 from PySide6.QtCore import QCoreApplication, QMetaObject, QSize, Qt
-from PySide6.QtGui import QDoubleValidator, QFont, QIntValidator
+from PySide6.QtGui import QFont
 from PySide6.QtWidgets import (
     QDialogButtonBox,
     QGridLayout,
@@ -39,9 +39,6 @@ class Ui_Dialog(object):
         Dialog.setFont(font)
         Dialog.setModal(True)
 
-        self.only_double = QDoubleValidator()
-        self.only_int = QIntValidator()
-
         self.verticalLayout = QVBoxLayout(Dialog)
         self.verticalLayout.setObjectName("verticalLayout")
         self.gridLayout = QGridLayout()
@@ -63,7 +60,6 @@ class Ui_Dialog(object):
 
         self.power_lineedit = QLineEdit(Dialog)
         self.power_lineedit.setObjectName("power_lineedit")
-        self.power_lineedit.setValidator(self.only_double)
 
         self.gridLayout.addWidget(self.power_lineedit, 1, 1, 1, 1)
 
@@ -74,7 +70,6 @@ class Ui_Dialog(object):
 
         self.u_lineedit = QLineEdit(Dialog)
         self.u_lineedit.setObjectName("u_lineedit")
-        self.u_lineedit.setValidator(self.only_double)
 
         self.gridLayout.addWidget(self.u_lineedit, 2, 1, 1, 1)
 
@@ -85,7 +80,6 @@ class Ui_Dialog(object):
 
         self.num_phases_lineedit = QLineEdit(Dialog)
         self.num_phases_lineedit.setObjectName("num_phases_lineedit")
-        self.num_phases_lineedit.setValidator(self.only_int)
 
         self.gridLayout.addWidget(self.num_phases_lineedit, 3, 1, 1, 1)
 
