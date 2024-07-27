@@ -8,7 +8,7 @@
 # WARNING! All changes made in this file will be lost when recompiling UI file!
 ###############################################################################
 
-from PySide6.QtCore import QCoreApplication, QMetaObject, QSize, Qt
+from PySide6.QtCore import QCoreApplication, QLocale, QMetaObject, QSize, Qt
 from PySide6.QtGui import QDoubleValidator, QFont
 from PySide6.QtWidgets import (
     QDialogButtonBox,
@@ -40,6 +40,9 @@ class Ui_Dialog(object):
         Dialog.setModal(True)
 
         self.only_double = QDoubleValidator()
+        self.only_double.setLocale(
+            QLocale(QLocale.English, QLocale.UnitedStates)
+        )
 
         self.verticalLayout = QVBoxLayout(Dialog)
         self.verticalLayout.setObjectName("verticalLayout")
