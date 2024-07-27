@@ -209,6 +209,12 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_6.addWidget(self.calculate_pushbutton)
 
+        self.draw_plot_pushutton = QPushButton(self.groupBox)
+        self.draw_plot_pushutton.setObjectName("draw_plot_pushutton")
+        self.draw_plot_pushutton.setEnabled(False)
+
+        self.horizontalLayout_6.addWidget(self.draw_plot_pushutton)
+
         self.horizontalSpacer_13 = QSpacerItem(
             40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum
         )
@@ -971,6 +977,13 @@ class Ui_MainWindow(object):
             QCoreApplication.translate(
                 "MainWindow",
                 "\u0420\u0430\u0441\u0441\u0447\u0438\u0442\u0430\u0442\u044c",
+                None,
+            )
+        )
+        self.draw_plot_pushutton.setText(
+            QCoreApplication.translate(
+                "MainWindow",
+                "\u041e\u0442\u0440\u0438\u0441\u043e\u0432\u0430\u0442\u044c",
                 None,
             )
         )
