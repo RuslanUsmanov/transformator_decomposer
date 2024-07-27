@@ -2,7 +2,7 @@ import sys
 from pathlib import Path
 
 from PySide6.QtCore import QAbstractTableModel, QModelIndex, Qt
-from PySide6.QtGui import QGuiApplication
+from PySide6.QtGui import QGuiApplication, QIcon
 from PySide6.QtWidgets import (
     QApplication,
     QDialog,
@@ -313,7 +313,7 @@ class TrasformatorDesomposer(QMainWindow):
 
     def _update_tab_names(self, names):
         self.ui.current_start_lineedit.setText(
-            f"{self.datasets[names[0]].dataset["dataset"][0]:.6f}"
+            f"{self.datasets[names[0]].dataset_scaled["dataset"][0]:.6f}"
         )
         for i in range(len(names)):
             self.ui.decomp_tabwidget.setTabText(i, names[i])
@@ -390,6 +390,7 @@ class TrasformatorDesomposer(QMainWindow):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
+    app.setWindowIcon(QIcon("ui/resources/logo/app_logo.ico"))
     window = TrasformatorDesomposer()
     window.show()
 

@@ -35,7 +35,7 @@ jobs:
 
     - name: Build Executable pyinstaller
       run: |
-        pyinstaller main.py -F -n transformator-linux
+        pyinstaller main.py -F --icon=ui/resources/icon/app_icon.ico -n transformator-linux
 
     - name: Upload Artifacts
       uses: actions/upload-artifact@v4
@@ -68,7 +68,7 @@ jobs:
 
     - name: Build Executable pyinstaller
       run: |
-        pyinstaller main.py -F --hide-console hide-early -n transformator-windows
+        pyinstaller main.py -F --hide-console hide-early --icon=ui/resources/icon/app_icon.ico -n transformator-windows
 
     - name: Upload Artifacts
       uses: actions/upload-artifact@v4
