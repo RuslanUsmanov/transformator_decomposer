@@ -1,4 +1,5 @@
 import os
+from enum import Enum
 
 import numpy as np
 import pandas as pd
@@ -51,6 +52,23 @@ class DataSet:
             y=self.dataset_scaled["dataset"],
             popt=popt,
         )
+
+
+class PlotType(str, Enum):
+    SCATTER = "scatter"
+    PLOT = "plot"
+
+
+class Plot:
+    def __init__(
+        self,
+        x: np.array,
+        y: np.array,
+        label: str = "",
+    ):
+        self.x = x
+        self.y = y
+        self.label = label
 
 
 def read_data_from_files(filenames: list[str]) -> dict[str, DataSet]:
