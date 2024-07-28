@@ -193,14 +193,14 @@ class Ui_MainWindow(object):
         self.groupBox.setObjectName("groupBox")
         self.horizontalLayout_3 = QHBoxLayout(self.groupBox)
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
+        self.verticalLayout_14 = QVBoxLayout()
+        self.verticalLayout_14.setObjectName("verticalLayout_14")
         self.data_view_pushbutton = QPushButton(self.groupBox)
         self.data_view_pushbutton.setObjectName("data_view_pushbutton")
         self.data_view_pushbutton.setEnabled(False)
 
-        self.horizontalLayout_3.addWidget(self.data_view_pushbutton)
+        self.verticalLayout_14.addWidget(self.data_view_pushbutton)
 
-        self.verticalLayout_14 = QVBoxLayout()
-        self.verticalLayout_14.setObjectName("verticalLayout_14")
         self.calculate_pushbutton = QPushButton(self.groupBox)
         self.calculate_pushbutton.setObjectName("calculate_pushbutton")
         self.calculate_pushbutton.setEnabled(False)
@@ -249,6 +249,7 @@ class Ui_MainWindow(object):
             self.groupBox_starting_current
         )
         self.current_start_lineedit_0.setObjectName("current_start_lineedit_0")
+        self.current_start_lineedit_0.setMinimumSize(QSize(90, 0))
         self.current_start_lineedit_0.setMaximumSize(QSize(110, 16777215))
         self.current_start_lineedit_0.setReadOnly(True)
 
@@ -278,6 +279,7 @@ class Ui_MainWindow(object):
             self.groupBox_starting_current
         )
         self.current_start_lineedit_1.setObjectName("current_start_lineedit_1")
+        self.current_start_lineedit_1.setMinimumSize(QSize(90, 0))
         self.current_start_lineedit_1.setMaximumSize(QSize(110, 16777215))
         self.current_start_lineedit_1.setReadOnly(True)
 
