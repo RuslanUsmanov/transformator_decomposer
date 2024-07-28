@@ -40,7 +40,7 @@ jobs:
     - name: Upload Artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: build_ubuntu
+        name: build_ubuntu_kvkz
         path: |
             dist/transformator-linux-kvkz
 
@@ -74,7 +74,7 @@ jobs:
     - name: Upload Artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: build_ubuntu
+        name: build_ubuntu_kst
         path: |
             dist/transformator-linux-kst
 
@@ -107,7 +107,7 @@ jobs:
     - name: Upload Artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: build_windows
+        name: build_windows_kvkz
         path: |
             dist/transformator-windows-kvkz.exe
 
@@ -140,7 +140,7 @@ jobs:
     - name: Upload Artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: build_windows
+        name: build_windows_kst
         path: |
             dist/transformator-windows-kst.exe
 
