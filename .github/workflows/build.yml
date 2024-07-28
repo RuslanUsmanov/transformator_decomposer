@@ -10,7 +10,7 @@ defaults:
     shell: bash
 
 jobs:
-  build-ubuntu:
+  build-ubuntu-kvkz:
     runs-on: ubuntu-latest
 
     steps:
@@ -35,16 +35,50 @@ jobs:
 
     - name: Build Executable pyinstaller
       run: |
-        pyinstaller linux.spec
+        pyinstaller linux_kvkz.spec
 
     - name: Upload Artifacts
       uses: actions/upload-artifact@v4
       with:
         name: build_ubuntu
         path: |
-            dist/transformator-linux
+            dist/transformator-linux-kvkz
 
-  build-windows:
+  build-ubuntu-kst:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check-out repository
+      uses: actions/checkout@v4
+
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+
+    - name: Install and configure Poetry
+      uses: snok/install-poetry@v1
+      with:
+        virtualenvs-create: false
+        installer-parallel: true
+
+    - name: Install Dependencies
+      run: |
+        poetry install --without=dev
+        poetry add pyinstaller
+
+    - name: Build Executable pyinstaller
+      run: |
+        pyinstaller linux_kst.spec
+
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: build_ubuntu
+        path: |
+            dist/transformator-linux-kst
+
+  build-windows-kvkz:
     runs-on: windows-latest
     steps:
     - name: Check-out repository
@@ -68,22 +102,57 @@ jobs:
 
     - name: Build Executable pyinstaller
       run: |
-        pyinstaller windows.spec
+        pyinstaller windows_kvkz.spec
 
     - name: Upload Artifacts
       uses: actions/upload-artifact@v4
       with:
         name: build_windows
         path: |
-            dist/transformator-windows.exe
+            dist/transformator-windows-kvkz.exe
+
+  build-windows-kst:
+    runs-on: windows-latest
+    steps:
+    - name: Check-out repository
+      uses: actions/checkout@v4
+
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+
+    - name: Install and configure Poetry
+      uses: snok/install-poetry@v1
+      with:
+        virtualenvs-create: false
+        installer-parallel: true
+
+    - name: Install Dependencies
+      run: |
+        poetry install --without=dev
+        poetry add pyinstaller
+
+    - name: Build Executable pyinstaller
+      run: |
+        pyinstaller windows_kst.spec
+
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: build_windows
+        path: |
+            dist/transformator-windows-kst.exe
 
   release:
     name: Create Release
     permissions:
       contents: write
     needs:
-      - build-ubuntu
-      - build-windows
+      - build-ubuntu-kvkz
+      - build-ubuntu-kst
+      - build-windows-kvkz
+      - build-windows-kst
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4

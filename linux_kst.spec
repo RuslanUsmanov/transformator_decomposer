@@ -2,7 +2,7 @@
 
 
 a = Analysis(
-    ['main.py'],
+    ['main_kst.py'],
     pathex=[],
     binaries=[],
     datas=[("ui/resources/logo/app_logo.ico", "ui/resources/logo")],
