@@ -27,6 +27,11 @@ class DataSet:
             self.__dataset["dataset"] - self.__dataset.min(axis=0)["dataset"]
         )
 
+    def refresh_current(self, params: SourceParams):
+        self.__dataset["I, A"] = self.__dataset["dataset"] * (
+            params.K_u / params.R_meas
+        )
+
     def scale_dataset(
         self,
         params: SourceParams,

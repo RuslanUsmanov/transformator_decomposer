@@ -176,6 +176,8 @@ class TrasformatorDesomposer(QMainWindow):
 
         try:
             self.datasets = service.read_data_from_files(filenames)
+            for key in self.datasets.keys():
+                self.datasets[key].refresh_current(self._source_params)
         except Exception as ex:
             QGuiApplication.restoreOverrideCursor()
             msg_box = QErrorMessage(self)
@@ -358,6 +360,8 @@ class TrasformatorDesomposer(QMainWindow):
         self._source_params.K_u = float(
             self.ui_source.k_u_lineedit.text()
         )
+        for key in self.datasets.keys():
+            self.datasets[key].refresh_current(self._source_params)
 
     def _toggle_ranges(self):
         if self.ui.constr_radiobutton.isChecked():
