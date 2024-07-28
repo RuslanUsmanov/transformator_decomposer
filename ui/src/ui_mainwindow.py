@@ -187,59 +187,72 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_4.addWidget(self.diapason_select_group)
 
+        self.verticalLayout_8.addLayout(self.verticalLayout_4)
+
         self.groupBox = QGroupBox(self.centralwidget)
         self.groupBox.setObjectName("groupBox")
-        self.horizontalLayout_6 = QHBoxLayout(self.groupBox)
-        self.horizontalLayout_6.setObjectName("horizontalLayout_6")
+        self.horizontalLayout_3 = QHBoxLayout(self.groupBox)
+        self.horizontalLayout_3.setObjectName("horizontalLayout_3")
         self.data_view_pushbutton = QPushButton(self.groupBox)
         self.data_view_pushbutton.setObjectName("data_view_pushbutton")
         self.data_view_pushbutton.setEnabled(False)
 
-        self.horizontalLayout_6.addWidget(self.data_view_pushbutton)
+        self.horizontalLayout_3.addWidget(self.data_view_pushbutton)
 
-        self.horizontalSpacer_14 = QSpacerItem(
-            40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum
-        )
-
-        self.horizontalLayout_6.addItem(self.horizontalSpacer_14)
-
+        self.verticalLayout_14 = QVBoxLayout()
+        self.verticalLayout_14.setObjectName("verticalLayout_14")
         self.calculate_pushbutton = QPushButton(self.groupBox)
         self.calculate_pushbutton.setObjectName("calculate_pushbutton")
         self.calculate_pushbutton.setEnabled(False)
 
-        self.horizontalLayout_6.addWidget(self.calculate_pushbutton)
+        self.verticalLayout_14.addWidget(self.calculate_pushbutton)
 
         self.draw_plot_pushutton = QPushButton(self.groupBox)
         self.draw_plot_pushutton.setObjectName("draw_plot_pushutton")
         self.draw_plot_pushutton.setEnabled(False)
 
-        self.horizontalLayout_6.addWidget(self.draw_plot_pushutton)
+        self.verticalLayout_14.addWidget(self.draw_plot_pushutton)
 
-        self.horizontalSpacer_13 = QSpacerItem(
-            40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum
-        )
-
-        self.horizontalLayout_6.addItem(self.horizontalSpacer_13)
+        self.horizontalLayout_3.addLayout(self.verticalLayout_14)
 
         self.groupBox_starting_current = QGroupBox(self.groupBox)
         self.groupBox_starting_current.setObjectName(
             "groupBox_starting_current"
         )
+        self.groupBox_starting_current.setAlignment(
+            Qt.AlignmentFlag.AlignRight
+            | Qt.AlignmentFlag.AlignTrailing
+            | Qt.AlignmentFlag.AlignVCenter
+        )
         self.verticalLayout_3 = QVBoxLayout(self.groupBox_starting_current)
         self.verticalLayout_3.setObjectName("verticalLayout_3")
         self.label_5 = QLabel(self.groupBox_starting_current)
         self.label_5.setObjectName("label_5")
+        self.label_5.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.verticalLayout_3.addWidget(self.label_5)
 
         self.horizontalLayout_5 = QHBoxLayout()
         self.horizontalLayout_5.setObjectName("horizontalLayout_5")
-        self.current_start_lineedit = QLineEdit(self.groupBox_starting_current)
-        self.current_start_lineedit.setObjectName("current_start_lineedit")
-        self.current_start_lineedit.setMaximumSize(QSize(150, 16777215))
-        self.current_start_lineedit.setReadOnly(True)
+        self.horizontalSpacer_13 = QSpacerItem(
+            40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum
+        )
 
-        self.horizontalLayout_5.addWidget(self.current_start_lineedit)
+        self.horizontalLayout_5.addItem(self.horizontalSpacer_13)
+
+        self.file_0_label = QLabel(self.groupBox_starting_current)
+        self.file_0_label.setObjectName("file_0_label")
+
+        self.horizontalLayout_5.addWidget(self.file_0_label)
+
+        self.current_start_lineedit_0 = QLineEdit(
+            self.groupBox_starting_current
+        )
+        self.current_start_lineedit_0.setObjectName("current_start_lineedit_0")
+        self.current_start_lineedit_0.setMaximumSize(QSize(110, 16777215))
+        self.current_start_lineedit_0.setReadOnly(True)
+
+        self.horizontalLayout_5.addWidget(self.current_start_lineedit_0)
 
         self.label_6 = QLabel(self.groupBox_starting_current)
         self.label_6.setObjectName("label_6")
@@ -248,11 +261,38 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_3.addLayout(self.horizontalLayout_5)
 
-        self.horizontalLayout_6.addWidget(self.groupBox_starting_current)
+        self.horizontalLayout_6 = QHBoxLayout()
+        self.horizontalLayout_6.setObjectName("horizontalLayout_6")
+        self.horizontalSpacer_14 = QSpacerItem(
+            40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum
+        )
 
-        self.verticalLayout_4.addWidget(self.groupBox)
+        self.horizontalLayout_6.addItem(self.horizontalSpacer_14)
 
-        self.verticalLayout_8.addLayout(self.verticalLayout_4)
+        self.file_1_label = QLabel(self.groupBox_starting_current)
+        self.file_1_label.setObjectName("file_1_label")
+
+        self.horizontalLayout_6.addWidget(self.file_1_label)
+
+        self.current_start_lineedit_1 = QLineEdit(
+            self.groupBox_starting_current
+        )
+        self.current_start_lineedit_1.setObjectName("current_start_lineedit_1")
+        self.current_start_lineedit_1.setMaximumSize(QSize(110, 16777215))
+        self.current_start_lineedit_1.setReadOnly(True)
+
+        self.horizontalLayout_6.addWidget(self.current_start_lineedit_1)
+
+        self.label_42 = QLabel(self.groupBox_starting_current)
+        self.label_42.setObjectName("label_42")
+
+        self.horizontalLayout_6.addWidget(self.label_42)
+
+        self.verticalLayout_3.addLayout(self.horizontalLayout_6)
+
+        self.horizontalLayout_3.addWidget(self.groupBox_starting_current)
+
+        self.verticalLayout_8.addWidget(self.groupBox)
 
         self.groupBox_3 = QGroupBox(self.centralwidget)
         self.groupBox_3.setObjectName("groupBox_3")
@@ -994,7 +1034,20 @@ class Ui_MainWindow(object):
                 None,
             )
         )
+        self.file_0_label.setText(
+            QCoreApplication.translate(
+                "MainWindow", "\u0424\u0430\u0439\u043b 1", None
+            )
+        )
         self.label_6.setText(
+            QCoreApplication.translate("MainWindow", "\u0410", None)
+        )
+        self.file_1_label.setText(
+            QCoreApplication.translate(
+                "MainWindow", "\u0424\u0430\u0439\u043b 2", None
+            )
+        )
+        self.label_42.setText(
             QCoreApplication.translate("MainWindow", "\u0410", None)
         )
         self.groupBox_3.setTitle("")

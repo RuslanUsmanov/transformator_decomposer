@@ -250,7 +250,10 @@ class TrasformatorDesomposer(QMainWindow):
         self.ui.kst_lineedit.setText("")
         self.ui.kvkz_lineedit.setText("")
 
-        self.ui.current_start_lineedit.setText("")
+        self.ui.current_start_lineedit_0.setText("")
+        self.ui.current_start_lineedit_1.setText("")
+        self.ui.file_0_label.setText("Файл 1")
+        self.ui.file_1_label.setText("Файл 2")
 
         self.ui.decomp_tabwidget.setTabText(0, "График 1")
         self.ui.decomp_tabwidget.setTabText(1, "График 2")
@@ -367,8 +370,13 @@ class TrasformatorDesomposer(QMainWindow):
             self.ui.to_points_lineedit.setText("")
 
     def _update_tab_names(self, names):
-        self.ui.current_start_lineedit.setText(
+        self.ui.file_0_label.setText(names[0])
+        self.ui.current_start_lineedit_0.setText(
             f"{self.datasets[names[0]].dataset_scaled["dataset"][0]:.6f}"
+        )
+        self.ui.file_1_label.setText(names[1])
+        self.ui.current_start_lineedit_1.setText(
+            f"{self.datasets[names[1]].dataset_scaled["dataset"][0]:.6f}"
         )
         for i in range(len(names)):
             self.ui.decomp_tabwidget.setTabText(i, names[i])
