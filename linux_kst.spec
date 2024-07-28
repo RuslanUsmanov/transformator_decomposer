@@ -22,7 +22,7 @@ exe = EXE(
     a.binaries,
     a.datas,
     [],
-    name='transformator-linux',
+    name='transformator-linux-kst',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,

@@ -22,7 +22,7 @@ exe = EXE(
     a.binaries,
     a.datas,
     [],
-    name='transformator-windows',
+    name='transformator-windows-kvkz',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
