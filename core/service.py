@@ -4,7 +4,7 @@ from enum import Enum
 import numpy as np
 import pandas as pd
 
-from core.decompose import get_coefficients, get_metrics
+from core.decompose import FuncCoefficients, get_coefficients, get_metrics
 from core.parameters import SourceParams
 
 
@@ -45,17 +45,17 @@ class DataSet:
             params.K_u / params.R_meas
         )
 
-    def get_coefficients(self):
+    def get_coefficients(self) -> FuncCoefficients:
         return get_coefficients(
             t=self.dataset_scaled["time"],
             y=self.dataset_scaled["dataset"],
         )
 
-    def get_metrics(self, popt):
+    def get_metrics(self, coeffs: FuncCoefficients):
         return get_metrics(
             t=self.dataset_scaled["time"],
             y=self.dataset_scaled["dataset"],
-            popt=popt,
+            coeffs=coeffs,
         )
 
 

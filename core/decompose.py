@@ -9,7 +9,28 @@ from sklearn.metrics import (
 )
 
 
-def get_coefficients(t: np.array, y: np.array) -> np.ndarray[np.float64]:
+class FuncCoefficients:
+    def __init__(
+        self,
+        c_1: float,
+        a_1: float,
+        c_2: float,
+        a_2: float,
+        c_3: float,
+        a_3: float,
+    ) -> None:
+        self.c_1 = c_1
+        self.c_2 = c_2
+        self.c_3 = c_3
+        self.a_1 = a_1
+        self.a_2 = a_2
+        self.a_3 = a_3
+
+    def unpack(self):
+        return (self.c_1, self.a_1, self.c_2, self.a_2, self.c_3, self.a_3)
+
+
+def get_coefficients(t: np.array, y: np.array) -> FuncCoefficients:
     """Выполняет оптимизацию целевой функции к заданным значениям.
 
     Args:
@@ -25,33 +46,36 @@ def get_coefficients(t: np.array, y: np.array) -> np.ndarray[np.float64]:
         ydata=y,
         p0=(2, 0, 2, 0, 2, 0),
     )
-    return popt
+    return FuncCoefficients(*popt)
 
 
 def get_metrics(
-    t: np.ndarray, y: np.array, popt: list[np.float64]
+    t: np.ndarray, y: np.array, coeffs: FuncCoefficients
 ) -> dict[str, np.float64]:
     """Вычисление метрик между реальными значениями и моделируемой функцией.
 
     Args:
         t: Массив значений времени.
         y: Массив значений ряда.
-        popt: Список коэффициентов, которые подставляются в функцию.
+        coeffs: Объект с коэффициентами, которые подставляются в функцию.
 
     Returns:
         Словарь с метриками.
     """
-    mae = mean_absolute_error(y, func(t, *popt))
-    mape = mean_absolute_percentage_error(y, func(t, *popt))
-    mdae = median_absolute_error(y, func(t, *popt))
-    mse = mean_squared_error(y, func(t, *popt))
-    r2 = r2_score(y, func(t, *popt))
+    mae = mean_absolute_error(y, func(t, *coeffs.unpack()))
+    mape = mean_absolute_percentage_error(y, func(t, *coeffs.unpack()))
+    mdae = median_absolute_error(y, func(t, *coeffs.unpack()))
+    mse = mean_squared_error(y, func(t, *coeffs.unpack()))
+    r2 = r2_score(y, func(t, *coeffs.unpack()))
 
     return {"mae": mae, "mape": mape, "mdae": mdae, "mse": mse, "r2": r2}
 
 
 def func(t, c_1, a_1, c_2, a_2, c_3, a_3):
-    """Моделируемая функция - сумма трех экспонент."""
+    """Моделируемая функция - сумма трех экспонент.
+
+    f(t) = c_1 * e^(-a_1 * t) + c_2 * e^(-a_2 * t) + c_3 * e^(-a_3 * t)
+    """
     return (
         np.multiply(c_1, np.exp(-a_1 * t))
         + np.multiply(c_2, np.exp(-a_2 * t))
@@ -59,23 +83,35 @@ def func(t, c_1, a_1, c_2, a_2, c_3, a_3):
     )
 
 
-def calc_kvkz(popt_1, popt_2):
+def calc_kvkz(norm: FuncCoefficients, short: FuncCoefficients):
+    """Вычисление коэффициента Квкз.
+
+    Args:
+        norm: Коэффициенты штатного режима.
+        short: Коэффициенты режима короткого замыкания.
+
+    Returns:
+        Коэффициент Квкз.
     """
-    popt_1: (C_1, A_1, C_2, A_2, C_3, A_3)
-    popt_2: (C_4, A_4, C_5, A_5, C_6, A_6)
-    kvkz = abs(A_5/A_2)
-    """
-    return np.abs(popt_2[3] / popt_1[3])
+    k_c1 = (norm.c_1 - short.c_1) * 100 / norm.c_1
+    k_c2 = (norm.c_2 - short.c_2) * 100 / norm.c_2
+    k_c3 = (norm.c_3 - short.c_3) * 100 / norm.c_3
+    k_a1 = (norm.a_1 - short.a_1) * 100 / norm.a_1
+    K_vkz = np.sqrt(k_c1**2 + k_c2**2 + k_c3**2 + k_a1**2)
+    return K_vkz
 
 
-def calc_kst(popt_1, popt_2):
+def calc_kst(norm: FuncCoefficients, short: FuncCoefficients):
+    """Вычисление коэффициента Кст.
+
+    Args:
+        norm: Коэффициенты штатного режима.
+        short: Коэффициенты режима короткого замыкания.
+
+    Returns:
+        Коэффициент Кст.
     """
-    popt_1: (C_1, A_1, C_2, A_2, C_3, A_3)
-    popt_2: (C_4, A_4, C_5, A_5, C_6, A_6)
-    kst = abs(A_4/A_1)
-    """
-    if np.abs(popt_1[1]) < np.abs(popt_1[3]) < np.abs(popt_1[5]) and np.abs(
-        popt_2[1]
-    ) < np.abs(popt_2[3]) < np.abs(popt_2[5]):
-        return np.abs(popt_2[1] / popt_1[1])
-    return None
+    k_a2 = (norm.a_2 - short.a_2) * 100 / norm.a_2
+    k_a3 = (norm.a_3 - short.a_3) * 100 / norm.a_3
+    k_st = np.sqrt(k_a2**2 + k_a3**2)
+    return k_st

@@ -389,15 +389,12 @@ class TrasformatorDesomposer(QMainWindow):
             self.ui.decomp_tabwidget.setTabText(i, names[i])
             self.ui.metrics_tabwidget.setTabText(i, names[i])
 
-    def _update_criteria_coeffs(self, popt_1, popt_2):
-        kvkz = calc_kvkz(popt_1, popt_2)
+    def _update_criteria_coeffs(self, norm, short):
+        kvkz = calc_kvkz(norm, short)
         self.ui.kvkz_lineedit.setText(f"{kvkz:.6f}")
 
-        kst = calc_kst(popt_1, popt_2)
-        if kst:
-            self.ui.kst_lineedit.setText(f"{kst:.6f}")
-        else:
-            self.ui.kst_lineedit.setText("Условие не выполнено.")
+        kst = calc_kst(norm, short)
+        self.ui.kst_lineedit.setText(f"{kst:.6f}")
 
     def _calculate_all(self):
         QGuiApplication.setOverrideCursor(Qt.WaitCursor)
@@ -437,8 +434,8 @@ class TrasformatorDesomposer(QMainWindow):
             to_points,
         )
         try:
-            popt_1 = self.datasets[selected_names[0]].get_coefficients()
-            popt_2 = self.datasets[selected_names[1]].get_coefficients()
+            norm = self.datasets[selected_names[0]].get_coefficients()
+            short = self.datasets[selected_names[1]].get_coefficients()
         except Exception as ex:
             QGuiApplication.restoreOverrideCursor()
             msg_box = QErrorMessage(self)
@@ -446,8 +443,8 @@ class TrasformatorDesomposer(QMainWindow):
             msg_box.showMessage(f"Ошибка вычисления: {repr(ex)}")
             return
 
-        metrics_1 = self.datasets[selected_names[0]].get_metrics(popt_1)
-        metrics_2 = self.datasets[selected_names[1]].get_metrics(popt_1)
+        metrics_1 = self.datasets[selected_names[0]].get_metrics(norm)
+        metrics_2 = self.datasets[selected_names[1]].get_metrics(short)
 
         self.plots[selected_names[0] + " данные"] = service.Plot(
             x=self.datasets[
@@ -476,7 +473,7 @@ class TrasformatorDesomposer(QMainWindow):
                 self.datasets[
                     selected_names[0]
                 ].dataset_scaled["time"].to_numpy(),
-                *popt_1,
+                *norm.unpack(),
             ),
             label=selected_names[0] + " функция"
         )
@@ -488,14 +485,14 @@ class TrasformatorDesomposer(QMainWindow):
                 self.datasets[
                     selected_names[1]
                 ].dataset_scaled["time"].to_numpy(),
-                *popt_2,
+                *short.unpack(),
             ),
             label=selected_names[1] + " функция"
         )
 
-        self._update_coeffs_ui(popt_1, popt_2)
+        self._update_coeffs_ui(norm.unpack(), short.unpack())
         self._update_metrics_ui(metrics_1,  metrics_2)
-        self._update_criteria_coeffs(popt_1, popt_2)
+        self._update_criteria_coeffs(norm, short)
 
         self._update_tab_names(selected_names)
         self._update_plots_select()
