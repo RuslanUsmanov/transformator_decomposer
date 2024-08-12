@@ -37,12 +37,16 @@ jobs:
       run: |
         pyinstaller linux_kvkz.spec
 
+    - name: Create archive
+      run: |
+        tar -czf transformator-linux-kvkz.tar.gz dist
+
     - name: Upload Artifacts
       uses: actions/upload-artifact@v4
       with:
         name: build_ubuntu_kvkz
         path: |
-            dist/transformator-linux-kvkz
+            transformator-linux-kvkz.tar.gz
 
   build-ubuntu-kst:
     runs-on: ubuntu-latest
@@ -71,12 +75,16 @@ jobs:
       run: |
         pyinstaller linux_kst.spec
 
+    - name: Create archive
+      run: |
+        tar -czf transformator-linux-kst.tar.gz dist
+
     - name: Upload Artifacts
       uses: actions/upload-artifact@v4
       with:
         name: build_ubuntu_kst
         path: |
-            dist/transformator-linux-kst
+            transformator-linux-kst.tar.gz
 
   build-windows-kvkz:
     runs-on: windows-latest
@@ -104,12 +112,16 @@ jobs:
       run: |
         pyinstaller windows_kvkz.spec
 
+    - name: Create archive
+      run: |
+        Compress-Archive -Path dist/* -Destination transformator-windows-kvkz.zip
+
     - name: Upload Artifacts
       uses: actions/upload-artifact@v4
       with:
         name: build_windows_kvkz
         path: |
-            dist/transformator-windows-kvkz.exe
+            transformator-windows-kvkz.zip
 
   build-windows-kst:
     runs-on: windows-latest
@@ -137,12 +149,16 @@ jobs:
       run: |
         pyinstaller windows_kst.spec
 
+    - name: Create archive
+      run: |
+        Compress-Archive -Path dist/* -Destination transformator-windows-kst.zip
+
     - name: Upload Artifacts
       uses: actions/upload-artifact@v4
       with:
         name: build_windows_kst
         path: |
-            dist/transformator-windows-kst.exe
+            transformator-windows-kst.zip
 
   release:
     name: Create Release
