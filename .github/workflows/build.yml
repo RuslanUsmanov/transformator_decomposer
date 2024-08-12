@@ -39,7 +39,7 @@ jobs:
 
     - name: Create archive
       run: |
-        tar -czf transformator-linux-kvkz.tar.gz dist
+        tar -czf transformator-linux-kvkz.tar.gz -C dist .
 
     - name: Upload Artifacts
       uses: actions/upload-artifact@v4
@@ -77,7 +77,7 @@ jobs:
 
     - name: Create archive
       run: |
-        tar -czf transformator-linux-kst.tar.gz dist
+        tar -czf transformator-linux-kst.tar.gz -C dist .
 
     - name: Upload Artifacts
       uses: actions/upload-artifact@v4
@@ -114,7 +114,7 @@ jobs:
 
     - name: Create archive
       run: |
-        Compress-Archive -Path dist/* -Destination transformator-windows-kvkz.zip
+        7z a -tzip transformator-windows-kvkz.zip dist/
 
     - name: Upload Artifacts
       uses: actions/upload-artifact@v4
@@ -151,7 +151,7 @@ jobs:
 
     - name: Create archive
       run: |
-        Compress-Archive -Path dist/* -Destination transformator-windows-kst.zip
+        7z a -tzip transformator-windows-kst.zip dist/
 
     - name: Upload Artifacts
       uses: actions/upload-artifact@v4
